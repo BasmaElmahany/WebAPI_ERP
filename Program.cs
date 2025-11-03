@@ -1,7 +1,9 @@
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Data;
+using WebAPI.Data.Entities;
 using WebAPI.Services;
 
 namespace WebAPI
@@ -35,7 +37,18 @@ namespace WebAPI
             // Erp master context (Projects table) - simple context
             builder.Services.AddDbContext<ErpMasterContext>(options =>
                 options.UseSqlServer(conn));
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ErpMasterContext>()
+    .AddDefaultTokenProviders();
 
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequireDigit = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                
+            });
             // Factory for project-level dynamic context
             builder.Services.AddSingleton(new ProjectDbContextFactory(conn));
             builder.Services.AddScoped<AccountingService>();
@@ -50,6 +63,7 @@ namespace WebAPI
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();

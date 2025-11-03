@@ -127,7 +127,6 @@ D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\staticwebassets\msbuild.build.Web
 D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.WebAPI.props
 D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.WebAPI.props
 D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\staticwebassets.pack.json
-D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\WebAPI.csproj.Up2Date
 D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\WebAPI.dll
 D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\refint\WebAPI.dll
@@ -138,3 +137,7 @@ D:\ErpMasterAPI\WebAPI\WebAPI\bin\Debug\net8.0\WebAPI.dll
 D:\ErpMasterAPI\WebAPI\WebAPI\bin\Debug\net8.0\WebAPI.pdb
 D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\WebAPI.genruntimeconfig.cache
 D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\ref\WebAPI.dll
+D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\WebAPI.sourcelink.json
+D:\ErpMasterAPI\WebAPI\WebAPI\bin\Debug\net8.0\WebAPI.staticwebassets.runtime.json
+D:\ErpMasterAPI\WebAPI\WebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\ErpMasterAPI\WebAPI\WebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll

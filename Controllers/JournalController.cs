@@ -55,6 +55,7 @@ namespace WebAPI.Controllers
                 return BadRequest(new { message = "Journal not balanced. Total debit must equal total credit." });
 
             var id = await _service.CreateJournalEntryAsync(project, entry, lines);
+            await _service.PostJournalEntryAsync(project, id); // auto post
             return CreatedAtAction(nameof(Get), new { project, id }, new { id });
         }
 
