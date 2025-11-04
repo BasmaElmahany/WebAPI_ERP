@@ -247,6 +247,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebAPI.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "WebAPI.Models.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPI.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "WebAPI.Models.RegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebAPI.Controllers.ProjectsController",
     "Method": "GetAll",
     "RelativePath": "api/Projects",
@@ -266,7 +298,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "WebAPI.Controllers.ProjectsController\u002BCreateProjectDto",
+        "Type": "WebAPI.Models.CreateProjectDto",
         "IsRequired": true
       }
     ],
@@ -303,7 +335,7 @@
       },
       {
         "Name": "dto",
-        "Type": "WebAPI.Controllers.ProjectsController\u002BCreateProjectDto",
+        "Type": "WebAPI.Models.CreateProjectDto",
         "IsRequired": true
       }
     ],
@@ -323,6 +355,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPI.Controllers.ProjectsController",
+    "Method": "GetMyProject",
+    "RelativePath": "api/Projects/my",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
