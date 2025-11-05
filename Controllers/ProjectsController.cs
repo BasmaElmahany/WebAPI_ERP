@@ -42,65 +42,67 @@ namespace WebAPI.Controllers
         [HttpGet("my")]
         public async Task<IActionResult> GetMyProject()
         {
-            try
-            {
-                // 🔹 Get the raw token from the Authorization header
-                var authHeader = Request.Headers["Authorization"].ToString();
-                if (string.IsNullOrWhiteSpace(authHeader) || !authHeader.StartsWith("Bearer "))
-                    return Unauthorized(new { message = "Missing or invalid Authorization header." });
+              try
+               {
+                   // 🔹 Get the raw token from the Authorization header
+                   var authHeader = Request.Headers["Authorization"].ToString();
+                   if (string.IsNullOrWhiteSpace(authHeader) || !authHeader.StartsWith("Bearer "))
+                       return Unauthorized(new { message = "Missing or invalid Authorization header." });
 
-                var token = authHeader.Substring("Bearer ".Length).Trim();
+                   var token = authHeader.Substring("Bearer ".Length).Trim();
 
-                // 🔹 Decode the token manually
-                var handler = new JwtSecurityTokenHandler();
-                var jwt = handler.ReadJwtToken(token);
+                   // 🔹 Decode the token manually
+                   var handler = new JwtSecurityTokenHandler();
+                   var jwt = handler.ReadJwtToken(token);
 
-                // 🔹 Extract the user ID from claims
-                var userId = jwt.Claims.FirstOrDefault(c =>
-                    c.Type == JwtRegisteredClaimNames.Sub ||
-                    c.Type == ClaimTypes.NameIdentifier ||
-                    c.Type.Contains("nameidentifier"))?.Value;
+                   // 🔹 Extract the user ID from claims
+                   var userId = jwt.Claims.FirstOrDefault(c =>
+                       c.Type == JwtRegisteredClaimNames.Sub ||
+                       c.Type == ClaimTypes.NameIdentifier ||
+                       c.Type.Contains("nameidentifier"))?.Value;
 
-                if (string.IsNullOrEmpty(userId))
-                    return Unauthorized(new { message = "Invalid token: missing user identifier." });
+                   if (string.IsNullOrEmpty(userId))
+                       return Unauthorized(new { message = "Invalid token: missing user identifier." });
 
-                // 🔹 Get the user by ID
-                var user = await _userManager.FindByIdAsync(userId);
-                if (user == null)
-                    return Unauthorized(new { message = "User not found or not logged in." });
+                   // 🔹 Get the user by ID
+                   var user = await _userManager.FindByIdAsync(userId);
+                   if (user == null)
+                       return Unauthorized(new { message = "User not found or not logged in." });
 
-                if (user.ProjectId == null)
-                    return NotFound(new { message = "User is not assigned to any project." });
+                   if (user.ProjectId == null)
+                       return NotFound(new { message = "User is not assigned to any project." });
 
-                // 🔹 Retrieve the project
-                var project = await _context.Projects.FindAsync(user.ProjectId);
-                if (project == null)
-                    return NotFound(new { message = "Assigned project not found." });
+                   // 🔹 Retrieve the project
+                   var project = await _context.Projects.FindAsync(user.ProjectId);
+                   if (project == null)
+                       return NotFound(new { message = "Assigned project not found." });
 
-                // ✅ Optional: Log decoded claims for debugging
-                Console.WriteLine("🟢 Decoded JWT Claims:");
-                foreach (var claim in jwt.Claims)
-                    Console.WriteLine($"   {claim.Type} = {claim.Value}");
+                   // ✅ Optional: Log decoded claims for debugging
+                   Console.WriteLine("🟢 Decoded JWT Claims:");
+                   foreach (var claim in jwt.Claims)
+                       Console.WriteLine($"   {claim.Type} = {claim.Value}");
 
-                // ✅ Return the project info
-                return Ok(new
-                {
-                    project,
-                    decodedUser = new
-                    {
-                        Id = user.Id,
-                        user.FullName,
-                        user.Email,
-                        user.ProjectId
-                    }
-                });
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"❌ Error decoding JWT: {ex.Message}");
-                return StatusCode(500, new { message = "Error decoding token.", error = ex.Message });
-            }
+                   // ✅ Return the project info
+                   return Ok(new
+                   {
+                       project,
+                       decodedUser = new
+                       {
+                           Id = user.Id,
+                           user.FullName,
+                           user.Email,
+                           user.ProjectId
+                       }
+                   });
+               }
+               catch (Exception ex)
+               {
+                   Console.WriteLine($"❌ Error decoding JWT: {ex.Message}");
+                   return StatusCode(500, new { message = "Error decoding token.", error = ex.Message });
+               }
+        
         }
+        
 
 
 

@@ -3,24 +3,44 @@
   "WorkspaceRootPath": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\services\\accountingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:services\\accountingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\settings\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:settings\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\revenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\revenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\ledgerentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\ledgerentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\journalline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\journalline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\journalentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\journalentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\fixedasset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\fixedasset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\expense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\expense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\chartofaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\chartofaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,31 +55,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ProjectsController.cs",
-              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ProjectsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProjectsController.cs",
-              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ProjectsController.cs",
-              "RelativeToolTip": "Controllers\\ProjectsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAK0AAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T13:59:22.901Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAiwEkAAABQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T13:41:12.765Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "AccountingService.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Services\\AccountingService.cs",
               "RelativeDocumentMoniker": "Services\\AccountingService.cs",
@@ -67,31 +62,125 @@
               "RelativeToolTip": "Services\\AccountingService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T13:41:09.956Z"
+              "WhenOpened": "2025-11-05T10:13:22.158Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "JwtSettings.cs",
-              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Settings\\JwtSettings.cs",
-              "RelativeDocumentMoniker": "Settings\\JwtSettings.cs",
-              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Settings\\JwtSettings.cs",
-              "RelativeToolTip": "Settings\\JwtSettings.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA1AAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Revenue.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\Revenue.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\Revenue.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\Revenue.cs",
+              "RelativeToolTip": "Data\\Entities\\Revenue.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T13:40:20.093Z"
+              "WhenOpened": "2025-11-05T09:55:39.677Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAiwJoAAAAAAAAAAAAAAA==",
+              "Title": "Project.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\Project.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\Project.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\Project.cs",
+              "RelativeToolTip": "Data\\Entities\\Project.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T13:39:23.366Z"
+              "WhenOpened": "2025-11-05T09:55:34.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LedgerEntry.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\LedgerEntry.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\LedgerEntry.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\LedgerEntry.cs",
+              "RelativeToolTip": "Data\\Entities\\LedgerEntry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T09:55:30.219Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "JournalLine.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\JournalLine.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\JournalLine.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\JournalLine.cs",
+              "RelativeToolTip": "Data\\Entities\\JournalLine.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T09:55:25.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "JournalEntry.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\JournalEntry.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\JournalEntry.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\JournalEntry.cs",
+              "RelativeToolTip": "Data\\Entities\\JournalEntry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T09:55:02.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FixedAsset.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\FixedAsset.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\FixedAsset.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\FixedAsset.cs",
+              "RelativeToolTip": "Data\\Entities\\FixedAsset.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T09:54:57.16Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Expense.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\Expense.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\Expense.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\Expense.cs",
+              "RelativeToolTip": "Data\\Entities\\Expense.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T09:54:52.988Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ChartOfAccount.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\ChartOfAccount.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\ChartOfAccount.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\ChartOfAccount.cs",
+              "RelativeToolTip": "Data\\Entities\\ChartOfAccount.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T09:54:47.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Account.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\Account.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\Account.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\Account.cs",
+              "RelativeToolTip": "Data\\Entities\\Account.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T09:54:39.504Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -99,13 +99,13 @@ namespace WebAPI.Controllers
         private async Task<List<Claim>> GetUserClaimsAsync(ApplicationUser user)
         {
             var claims = new List<Claim>
-                {
-        new Claim(ClaimTypes.NameIdentifier, user.Id),
-        new Claim(ClaimTypes.Name, user.FullName ?? user.UserName),
-        new Claim(ClaimTypes.Email, user.Email)
-    };
+             {
+            new Claim(ClaimTypes.NameIdentifier, user.Id),
+            new Claim(ClaimTypes.Name, user.FullName ?? user.UserName),
+            new Claim(ClaimTypes.Email, user.Email)
+             };
 
-           
+
             return claims;
         }
 

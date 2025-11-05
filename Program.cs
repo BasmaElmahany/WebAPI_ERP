@@ -156,6 +156,16 @@ namespace WebAPI
             // Factory for project-level dynamic context
             builder.Services.AddSingleton(new ProjectDbContextFactory(conn));
             builder.Services.AddScoped<AccountingService>();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngularDevClient", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200") // 👈 your Angular app URL
+                          .AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .AllowCredentials(); // optional if you use cookies
+                });
+            });
 
             var app = builder.Build();
             app.Use(async (context, next) =>
@@ -175,6 +185,8 @@ namespace WebAPI
            
 
             app.UseAuthentication();
+            app.UseCors("AllowAngularDevClient");
+
             app.UseAuthorization();
             app.MapControllers();
             app.Run();
