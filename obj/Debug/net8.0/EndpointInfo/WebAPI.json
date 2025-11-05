@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "ERP system API",
-    "description": "📚 ERP system",
+    "title": "ERP System API",
+    "description": "📚 ERP System built with ASP.NET Core",
     "contact": {
       "name": "Basma Khalaf",
       "email": "basmakhalaf974@gmail.com"
@@ -65,6 +65,18 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/admin/dashboard": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -779,10 +791,10 @@
     },
     "securitySchemes": {
       "Bearer": {
-        "type": "apiKey",
-        "description": "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
-        "name": "Authorization",
-        "in": "header"
+        "type": "http",
+        "description": "Enter your JWT token like: Bearer {your token}",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   },

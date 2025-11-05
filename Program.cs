@@ -1,12 +1,10 @@
-﻿
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.IdentityModel.Tokens.Jwt;
-using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using WebAPI.Data;
@@ -22,63 +20,67 @@ namespace WebAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // 🧩 Connection String
             var conn = builder.Configuration.GetConnectionString("DefaultConnection");
+
             builder.Logging.ClearProviders();
             builder.Logging.AddConsole();
 
+            // 🧩 JWT Configuration
             var jwtSettingsSection = builder.Configuration.GetSection("JwtSettings");
             builder.Services.Configure<JwtSettings>(jwtSettingsSection);
             var jwtSettings = jwtSettingsSection.Get<JwtSettings>();
 
+            // ✅ Fix for role claim mapping issues
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
+            // 🧩 Authentication & JWT
             builder.Services.AddAuthentication(options =>
             {
-                options.DefaultAuthenticateScheme = "JwtBearer";
-                options.DefaultChallengeScheme = "JwtBearer";
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                       .AddJwtBearer("JwtBearer", options =>
-                       {
-                           options.TokenValidationParameters = new TokenValidationParameters
-                           {
-                               ValidateIssuer = true,
-                               ValidateAudience = true,
-                               ValidateLifetime = true,
-                               ValidateIssuerSigningKey = true,
-                               ValidIssuer = jwtSettings.Issuer,
-                               ValidAudience = jwtSettings.Audience,
-                               IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
-                               RoleClaimType = ClaimTypes.Role
-                           };
-                       });
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtSettings.Issuer,
+                    ValidAudience = jwtSettings.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
+                    RoleClaimType = ClaimTypes.Role
+                };
+            });
 
             builder.Services.AddAuthorization();
 
-            // Add services to the container.
+            // 🧩 Controllers + JSON Options
             builder.Services.AddControllers()
                 .AddJsonOptions(opts =>
                 {
-                    // consistent JSON output
                     opts.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
                     opts.JsonSerializerOptions.WriteIndented = false;
                 });
 
-
-            // Ensure controllers always produce JSON responses
+            // Ensure JSON responses always
             builder.Services.Configure<MvcOptions>(opts =>
             {
                 opts.Filters.Add(new ProducesAttribute("application/json"));
             });
 
-            builder.Services.AddControllers();
-
             builder.Services.AddEndpointsApiExplorer();
+
+            // 🧩 Swagger setup
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "ERP system API",
+                    Title = "ERP System API",
                     Version = "v1",
-                    Description = "📚 ERP system",
+                    Description = "📚 ERP System built with ASP.NET Core",
                     Contact = new OpenApiContact
                     {
                         Name = "Basma Khalaf",
@@ -86,50 +88,42 @@ namespace WebAPI
                     }
                 });
 
-
+                // ✅ JWT Bearer Support in Swagger
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
                     Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
+                    Description = "Enter your JWT token like: Bearer {your token}"
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
                 {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            Array.Empty<string>()
-        }
-    });
-
-
-               /* var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));*/
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
             });
 
-
-            builder.Services.AddControllers();
-            builder.Services.AddEndpointsApiExplorer();
-
-
-
-
-            // Erp master context (Projects table) - simple context
+            // 🧩 DbContext and Identity
             builder.Services.AddDbContext<ErpMasterContext>(options =>
                 options.UseSqlServer(conn));
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<ErpMasterContext>()
-    .AddDefaultTokenProviders();
 
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ErpMasterContext>()
+                .AddDefaultTokenProviders();
+
+            // 🧩 Identity Options
             builder.Services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 6;
@@ -138,7 +132,7 @@ namespace WebAPI
                 options.Password.RequireNonAlphanumeric = false;
             });
 
-            // 🔐 Prevent redirecting on unauthorized access
+            // 🔐 Prevent redirects on unauthorized access
             builder.Services.ConfigureApplicationCookie(options =>
             {
                 options.Events.OnRedirectToLogin = context =>
@@ -153,42 +147,52 @@ namespace WebAPI
                 };
             });
 
-            // Factory for project-level dynamic context
+            // 🧩 Custom Services
             builder.Services.AddSingleton(new ProjectDbContextFactory(conn));
             builder.Services.AddScoped<AccountingService>();
+
+            // 🧩 CORS (Angular)
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAngularDevClient", policy =>
                 {
-                    policy.WithOrigins("http://localhost:4200") // 👈 your Angular app URL
+                    policy.WithOrigins("http://localhost:4200")
                           .AllowAnyHeader()
                           .AllowAnyMethod()
-                          .AllowCredentials(); // optional if you use cookies
+                          .AllowCredentials();
                 });
             });
 
+            // 🧩 Build App
             var app = builder.Build();
+
             app.Use(async (context, next) =>
             {
                 Console.WriteLine($"➡️ Incoming Request: {context.Request.Method} {context.Request.Path}");
                 await next();
                 Console.WriteLine($"⬅️ Response Status: {context.Response.StatusCode}");
             });
-            if (app.Environment.IsDevelopment()|| app.Environment.IsProduction())
+
+            // 🧩 Swagger & Dev Tools
+            if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
-
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            app.UseHttpsRedirection();
-           
 
-            app.UseAuthentication();
+            // 🧩 Middleware order (important)
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
             app.UseCors("AllowAngularDevClient");
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
             app.MapControllers();
+
             app.Run();
         }
     }

@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\journalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\journalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\models\\createjournallinedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:models\\createjournallinedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\services\\accountingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:services\\accountingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\settings\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:settings\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,84 +34,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-05T09:20:02.223Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ApplicationUser.cs",
-              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\ApplicationUser.cs",
-              "RelativeDocumentMoniker": "Data\\Entities\\ApplicationUser.cs",
-              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\ApplicationUser.cs",
-              "RelativeToolTip": "Data\\Entities\\ApplicationUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T07:37:20.945Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAADwvz4AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T13:41:12.765Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AccountingService.cs",
-              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Services\\AccountingService.cs",
-              "RelativeDocumentMoniker": "Services\\AccountingService.cs",
-              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Services\\AccountingService.cs",
-              "RelativeToolTip": "Services\\AccountingService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T13:41:09.956Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "JwtSettings.cs",
-              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Settings\\JwtSettings.cs",
-              "RelativeDocumentMoniker": "Settings\\JwtSettings.cs",
-              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Settings\\JwtSettings.cs",
-              "RelativeToolTip": "Settings\\JwtSettings.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T13:40:20.093Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAYwLwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKMAAAAAAAAAAAAiwMcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T13:39:23.366Z",
+              "WhenOpened": "2025-11-05T13:38:43.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProjectsController.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ProjectsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProjectsController.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ProjectsController.cs",
+              "RelativeToolTip": "Controllers\\ProjectsController.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwCkAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T13:21:07.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAAwJAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T10:15:51.224Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CreateJournalLineDto.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Models\\CreateJournalLineDto.cs",
+              "RelativeDocumentMoniker": "Models\\CreateJournalLineDto.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Models\\CreateJournalLineDto.cs",
+              "RelativeToolTip": "Models\\CreateJournalLineDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T10:18:09.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "JournalController.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\JournalController.cs",
+              "RelativeDocumentMoniker": "Controllers\\JournalController.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\JournalController.cs",
+              "RelativeToolTip": "Controllers\\JournalController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCEAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T10:17:10.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AccountingService.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Services\\AccountingService.cs",
+              "RelativeDocumentMoniker": "Services\\AccountingService.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Services\\AccountingService.cs",
+              "RelativeToolTip": "Services\\AccountingService.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T10:17:04.042Z",
               "EditorCaption": ""
             }
           ]

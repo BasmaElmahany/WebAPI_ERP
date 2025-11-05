@@ -3,6 +3,7 @@ using WebAPI.Data.Entities;
 using WebAPI.Data;
 using WebAPI.Services;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
@@ -20,21 +21,9 @@ namespace WebAPI.Controllers
             _service = service;
         }
 
-        public class CreateJournalDto
-        {
-            public string? EntryNumber { get; set; }
-            public DateTime Date { get; set; } = DateTime.UtcNow;
-            public string? Description { get; set; }
-            public List<CreateJournalLineDto> Lines { get; set; } = new();
-        }
+      
 
-        public class CreateJournalLineDto
-        {
-            public int AccountId { get; set; }
-            public decimal Debit { get; set; } = 0;
-            public decimal Credit { get; set; } = 0;
-            public string? Description { get; set; }
-        }
+      
 
         [HttpPost]
         public async Task<IActionResult> Create(string project, [FromBody] CreateJournalDto dto)

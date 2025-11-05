@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles ="shusha")]
+        [Authorize("Admin")]
         public async Task<IActionResult> GetAll()
         {
             var list = await _context.Projects.OrderBy(p => p.Name).ToListAsync();
