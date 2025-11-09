@@ -8,6 +8,7 @@ using WebAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
+using System.Diagnostics.Eventing.Reader;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -32,12 +33,68 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize("Admin")]
+   
         public async Task<IActionResult> GetAll()
         {
-            var list = await _context.Projects.OrderBy(p => p.Name).ToListAsync();
-            return Ok(list);
+            try
+            {
+                // ✅ Extract the raw JWT token from Authorization header
+                var authHeader = Request.Headers["Authorization"].ToString();
+                if (string.IsNullOrWhiteSpace(authHeader) || !authHeader.StartsWith("Bearer "))
+                    return Unauthorized(new { message = "Missing or invalid Authorization header." });
+
+                var token = authHeader.Substring("Bearer ".Length).Trim();
+
+                // ✅ Decode the token
+                var handler = new JwtSecurityTokenHandler();
+                var jwt = handler.ReadJwtToken(token);
+
+                // ✅ Extract user ID claim
+                var userId = jwt.Claims.FirstOrDefault(c =>
+                    c.Type == JwtRegisteredClaimNames.Sub ||
+                    c.Type == ClaimTypes.NameIdentifier ||
+                    c.Type.EndsWith("nameidentifier", StringComparison.OrdinalIgnoreCase))?.Value;
+
+                if (string.IsNullOrEmpty(userId))
+                    return Unauthorized(new { message = "Invalid token: missing user identifier." });
+
+                // ✅ Fetch user from Identity
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                    return Unauthorized(new { message = "User not found or no longer active." });
+
+                // ✅ Extract all roles (multiple possible)
+                var roles = jwt.Claims
+                    .Where(c => c.Type == ClaimTypes.Role)
+                    .Select(c => c.Value)
+                    .ToList();
+
+                // ✅ Optional debug output
+                Console.WriteLine("🟢 JWT Claims:");
+                foreach (var c in jwt.Claims)
+                    Console.WriteLine($"   {c.Type} = {c.Value}");
+
+                // ✅ Check if Admin
+                if (roles.Contains("Admin"))
+                {
+                    var projects = await _context.Projects
+                        .OrderBy(p => p.Name)
+                        .ToListAsync();
+
+                    return Ok(projects);
+                }
+
+                // ✅ Otherwise, return limited data or forbidden
+                return Forbid("You do not have permission to access this resource.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error decoding JWT: {ex}");
+                return StatusCode(500, new { message = "Error decoding or processing JWT.", error = ex.Message });
+            }
         }
+
+
         // 🧠 Get the current user's assigned project
         [HttpGet("my")]
         public async Task<IActionResult> GetMyProject()
@@ -114,74 +171,227 @@ namespace WebAPI.Controllers
             return Ok(p);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProjectDto dto)
         {
-            if (string.IsNullOrWhiteSpace(dto.Name))
-                return BadRequest(new { message = "Project name required" });
-
-            if (await _context.Projects.AnyAsync(p => p.Name == dto.Name))
-                return BadRequest(new { message = "Project name already exists" });
-
-            var project = new Project
+            try
             {
-                Name = dto.Name.Trim(),
-                Description = dto.Description
-            };
+                // ✅ Extract the raw JWT token from Authorization header
+                var authHeader = Request.Headers["Authorization"].ToString();
+                if (string.IsNullOrWhiteSpace(authHeader) || !authHeader.StartsWith("Bearer "))
+                    return Unauthorized(new { message = "Missing or invalid Authorization header." });
 
-            _context.Projects.Add(project);
-            await _context.SaveChangesAsync();
+                var token = authHeader.Substring("Bearer ".Length).Trim();
 
-            // 🧱 إنشاء قاعدة المشروع (schema)
-            var param = new SqlParameter("@ProjectName", dto.Name.Trim());
-            await _context.Database.ExecuteSqlRawAsync("EXEC dbo.sp_CreateProjectFullSchema @ProjectName", param);
+                // ✅ Decode the token
+                var handler = new JwtSecurityTokenHandler();
+                var jwt = handler.ReadJwtToken(token);
 
-            // 🔐 إنشاء Role بنفس اسم المشروع
-            if (!await _roleManager.RoleExistsAsync(dto.Name.Trim()))
-            {
-                var role = new IdentityRole(dto.Name.Trim());
-                var roleResult = await _roleManager.CreateAsync(role);
+                // ✅ Extract user ID claim
+                var userId = jwt.Claims.FirstOrDefault(c =>
+                    c.Type == JwtRegisteredClaimNames.Sub ||
+                    c.Type == ClaimTypes.NameIdentifier ||
+                    c.Type.EndsWith("nameidentifier", StringComparison.OrdinalIgnoreCase))?.Value;
 
-                if (!roleResult.Succeeded)
+                if (string.IsNullOrEmpty(userId))
+                    return Unauthorized(new { message = "Invalid token: missing user identifier." });
+
+                // ✅ Fetch user from Identity
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                    return Unauthorized(new { message = "User not found or no longer active." });
+
+                // ✅ Extract all roles (multiple possible)
+                var roles = jwt.Claims
+                    .Where(c => c.Type == ClaimTypes.Role)
+                    .Select(c => c.Value)
+                    .ToList();
+
+                // ✅ Optional debug output
+                Console.WriteLine("🟢 JWT Claims:");
+                foreach (var c in jwt.Claims)
+                    Console.WriteLine($"   {c.Type} = {c.Value}");
+
+                // ✅ Check if Admin
+                if (roles.Contains("Admin"))
                 {
-                    return StatusCode(500, new
+                    // ✅ Validate request
+                    if (string.IsNullOrWhiteSpace(dto.Name))
+                        return BadRequest(new { message = "Project name is required." });
+
+                    if (await _context.Projects.AnyAsync(p => p.Name == dto.Name))
+                        return BadRequest(new { message = "Project name already exists." });
+
+                    // ✅ Create new project
+                    var project = new Project
                     {
-                        message = "Project created, but failed to create role.",
-                        errors = roleResult.Errors
-                    });
+                        Name = dto.Name.Trim(),
+                        Description = dto.Description
+                    };
+
+                    _context.Projects.Add(project);
+                    await _context.SaveChangesAsync();
+
+                    // ✅ Create schema
+                    var param = new SqlParameter("@ProjectName", dto.Name.Trim());
+                    await _context.Database.ExecuteSqlRawAsync("EXEC dbo.sp_CreateProjectFullSchema @ProjectName", param);
+
+
+                    return CreatedAtAction(nameof(Get), new { id = project.Id }, project);
+                    
+                }
+
+                else
+                {
+                    return Ok(new { message = "Unauthorized" });
                 }
             }
-
-            return CreatedAtAction(nameof(Get), new { id = project.Id }, project);
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error in Create Project: {ex}");
+                return StatusCode(500, new { message = "Error creating project.", error = ex.Message });
+            }
         }
-
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] CreateProjectDto dto)
         {
-            var p = await _context.Projects.FindAsync(id);
-            if (p == null) return NotFound();
-            p.Description = dto.Description;
-            if (!string.IsNullOrWhiteSpace(dto.Name) && p.Name != dto.Name)
+            try
             {
-                // renaming schema is not handled here — keep simple
-                p.Name = dto.Name.Trim();
+                var authHeader = Request.Headers["Authorization"].ToString();
+                if (string.IsNullOrWhiteSpace(authHeader) || !authHeader.StartsWith("Bearer "))
+                    return Unauthorized(new { message = "Missing or invalid Authorization header." });
+
+                var token = authHeader.Substring("Bearer ".Length).Trim();
+
+                // ✅ Decode the token
+                var handler = new JwtSecurityTokenHandler();
+                var jwt = handler.ReadJwtToken(token);
+
+                // ✅ Extract user ID claim
+                var userId = jwt.Claims.FirstOrDefault(c =>
+                    c.Type == JwtRegisteredClaimNames.Sub ||
+                    c.Type == ClaimTypes.NameIdentifier ||
+                    c.Type.EndsWith("nameidentifier", StringComparison.OrdinalIgnoreCase))?.Value;
+
+                if (string.IsNullOrEmpty(userId))
+                    return Unauthorized(new { message = "Invalid token: missing user identifier." });
+
+                // ✅ Fetch user from Identity
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                    return Unauthorized(new { message = "User not found or no longer active." });
+
+                // ✅ Extract all roles (multiple possible)
+                var roles = jwt.Claims
+                    .Where(c => c.Type == ClaimTypes.Role)
+                    .Select(c => c.Value)
+                    .ToList();
+
+                // ✅ Optional debug output
+                Console.WriteLine("🟢 JWT Claims:");
+                foreach (var c in jwt.Claims)
+                    Console.WriteLine($"   {c.Type} = {c.Value}");
+
+                // ✅ Check if Admin
+                if (roles.Contains("Admin"))
+                {
+
+                    var project = await _context.Projects.FindAsync(id);
+                    if (project == null)
+                        return NotFound(new { message = "Project not found." });
+
+                    if (!string.IsNullOrWhiteSpace(dto.Description))
+                        project.Description = dto.Description.Trim();
+
+                    if (!string.IsNullOrWhiteSpace(dto.Name) && project.Name != dto.Name)
+                        project.Name = dto.Name.Trim(); // NOTE: schema rename not handled
+
+                    await _context.SaveChangesAsync();
+                    return Ok(new { message = "Project updated successfully." });
+                }
+                else
+                {
+                    return Ok(new { message = "Unauthorized" });
+                }
             }
-            await _context.SaveChangesAsync();
-            return NoContent();
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error updating project: {ex}");
+                return StatusCode(500, new { message = "Error updating project.", error = ex.Message });
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var p = await _context.Projects.FindAsync(id);
-            if (p == null) return NotFound();
+            try
+            {
+                var authHeader = Request.Headers["Authorization"].ToString();
+                if (string.IsNullOrWhiteSpace(authHeader) || !authHeader.StartsWith("Bearer "))
+                    return Unauthorized(new { message = "Missing or invalid Authorization header." });
 
-            // Note: this does NOT drop schema/tables. You can extend to run DROP SCHEMA if needed.
-            _context.Projects.Remove(p);
-            await _context.SaveChangesAsync();
-            return NoContent();
+                var token = authHeader.Substring("Bearer ".Length).Trim();
+                var handler = new JwtSecurityTokenHandler();
+                var jwt = handler.ReadJwtToken(token);
+
+                var userId = jwt.Claims.FirstOrDefault(c =>
+                    c.Type == JwtRegisteredClaimNames.Sub ||
+                    c.Type == ClaimTypes.NameIdentifier ||
+                    c.Type.EndsWith("nameidentifier", StringComparison.OrdinalIgnoreCase))?.Value;
+
+                if (string.IsNullOrEmpty(userId))
+                    return Unauthorized(new { message = "Invalid token: missing user identifier." });
+
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                    return Unauthorized(new { message = "User not found or inactive." });
+
+                var roles = jwt.Claims
+                    .Where(c => c.Type == ClaimTypes.Role)
+                    .Select(c => c.Value)
+                    .ToList();
+
+                // ✅ Check if Admin
+                if (!roles.Contains("Admin"))
+                    return Unauthorized(new { message = "Access denied." });
+
+                // ✅ Delete the project
+                var project = await _context.Projects.FindAsync(id);
+                if (project == null)
+                    return NotFound(new { message = "Project not found." });
+
+                _context.Projects.Remove(project);
+                await _context.SaveChangesAsync();
+
+                string schemaName = project.Name; // or dynamically set from the project
+               
+               
+                string sql = $@"
+    DECLARE @schema SYSNAME = N'{schemaName}';
+    DECLARE @sql NVARCHAR(MAX) = N'';
+
+    SELECT @sql += 'DROP TABLE [' + s.name + '].[' + t.name + '];' + CHAR(13)
+    FROM sys.tables AS t
+    INNER JOIN sys.schemas AS s ON t.schema_id = s.schema_id
+    WHERE s.name = @schema;
+
+    EXEC sp_executesql @sql;
+";
+                await _context.Database.ExecuteSqlRawAsync(sql);
+
+
+                await _context.Database.ExecuteSqlRawAsync(sql);
+
+                return Ok(new { message = "Project and associated schema tables deleted successfully." });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error deleting project: {ex}");
+                return StatusCode(500, new { message = "Error deleting project.", error = ex.Message });
+            }
         }
+
+
     }
 }

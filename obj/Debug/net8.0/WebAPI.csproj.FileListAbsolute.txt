@@ -142,4 +142,3 @@ D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\refint\WebAPI.dll
 D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\WebAPI.pdb
 D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\WebAPI.genruntimeconfig.cache
 D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\ref\WebAPI.dll
-D:\ErpMasterAPI\WebAPI\WebAPI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
