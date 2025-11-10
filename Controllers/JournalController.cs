@@ -20,11 +20,6 @@ namespace WebAPI.Controllers
             _factory = factory;
             _service = service;
         }
-
-      
-
-      
-
         [HttpPost]
         public async Task<IActionResult> Create(string project, [FromBody] CreateJournalDto dto)
         {

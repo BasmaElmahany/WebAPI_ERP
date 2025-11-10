@@ -303,9 +303,40 @@ namespace WebAPI.Controllers
 
                     if (!string.IsNullOrWhiteSpace(dto.Description))
                         project.Description = dto.Description.Trim();
-
                     if (!string.IsNullOrWhiteSpace(dto.Name) && project.Name != dto.Name)
-                        project.Name = dto.Name.Trim(); // NOTE: schema rename not handled
+                    {
+                        var oldSchema = project.Name.Trim();
+                        var newSchema = dto.Name.Trim();
+
+                        await _context.Database.BeginTransactionAsync();
+                        try
+                        {
+                            await _context.Database.ExecuteSqlRawAsync($"CREATE SCHEMA [{newSchema}]");
+
+                            var moveSql = $@"
+            DECLARE @sql NVARCHAR(MAX) = N'';
+            SELECT @sql += 'ALTER SCHEMA [{newSchema}] TRANSFER [{oldSchema}].[' + t.name + '];' + CHAR(13)
+            FROM sys.tables AS t
+            INNER JOIN sys.schemas AS s ON t.schema_id = s.schema_id
+            WHERE s.name = '{oldSchema}';
+            EXEC sp_executesql @sql;
+        ";
+                            await _context.Database.ExecuteSqlRawAsync(moveSql);
+
+                            await _context.Database.ExecuteSqlRawAsync($"DROP SCHEMA [{oldSchema}]");
+
+                            project.Name = newSchema;
+                            await _context.SaveChangesAsync();
+
+                            await _context.Database.CommitTransactionAsync();
+                            return Ok(new { message = "Project and schema renamed successfully." });
+                        }
+                        catch (Exception ex)
+                        {
+                            await _context.Database.RollbackTransactionAsync();
+                            return StatusCode(500, new { message = "Error renaming schema.", error = ex.Message });
+                        }
+                    }
 
                     await _context.SaveChangesAsync();
                     return Ok(new { message = "Project updated successfully." });

@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using WebAPI.Data.Entities;
 
 namespace WebAPI.Data
 {
     public class ProjectDbContext : DbContext
     {
+        public string Schema => _schema; // expose it for the cache key factory
         private readonly string _schema;
         private readonly string _connectionString;
 
@@ -17,7 +19,11 @@ namespace WebAPI.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer(_connectionString);
+            {
+                optionsBuilder
+                    .UseSqlServer(_connectionString)
+                    .ReplaceService<IModelCacheKeyFactory, ProjectModelCacheKeyFactory>();
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
