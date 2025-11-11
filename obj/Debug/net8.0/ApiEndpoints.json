@@ -105,6 +105,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebAPI.Controllers.ChartOfAccountsController",
+    "Method": "GetAccountList",
+    "RelativePath": "api/{project}/chart-of-accounts/List",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "project",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebAPI.Controllers.JournalController",
     "Method": "Create",
     "RelativePath": "api/{project}/journals",

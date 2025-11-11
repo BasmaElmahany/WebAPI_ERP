@@ -23,6 +23,17 @@ namespace WebAPI.Controllers
             var list = await db.ChartOfAccounts.OrderBy(x => x.AccountCode).ToListAsync();
             return Ok(list);
         }
+        [HttpGet("List")]
+        public async Task<IActionResult> GetAccountList(string project)
+        {
+            using var db = _factory.Create(project);
+            var list = await db.ChartOfAccounts.Select(c=> new
+            {
+                c.Id ,
+                c.AccountName
+            }).ToListAsync();
+            return Ok(list);
+        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string project, int id)

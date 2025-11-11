@@ -145,6 +145,28 @@
         }
       }
     },
+    "/api/{project}/chart-of-accounts/List": {
+      "get": {
+        "tags": [
+          "ChartOfAccounts"
+        ],
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/{project}/chart-of-accounts/{id}": {
       "get": {
         "tags": [
