@@ -143,6 +143,48 @@
   },
   {
     "ContainingType": "WebAPI.Controllers.JournalController",
+    "Method": "GetAll",
+    "RelativePath": "api/{project}/journals",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "project",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPI.Controllers.JournalController",
+    "Method": "Update",
+    "RelativePath": "api/{project}/journals/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "project",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "WebAPI.Models.CreateJournalDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPI.Controllers.JournalController",
     "Method": "Get",
     "RelativePath": "api/{project}/journals/{id}",
     "HttpMethod": "GET",
@@ -164,8 +206,50 @@
   },
   {
     "ContainingType": "WebAPI.Controllers.JournalController",
+    "Method": "Delete",
+    "RelativePath": "api/{project}/journals/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "project",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPI.Controllers.JournalController",
     "Method": "Post",
     "RelativePath": "api/{project}/journals/{id}/post",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "project",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPI.Controllers.JournalController",
+    "Method": "Unpost",
+    "RelativePath": "api/{project}/journals/{id}/unpost",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

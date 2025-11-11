@@ -3,12 +3,32 @@
   "WorkspaceRootPath": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\projectdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\projectdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\journalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\journalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\services\\accountingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:services\\accountingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\ledgerentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\ledgerentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\journalline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\journalline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\journalentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\journalentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\chartofaccountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\chartofaccountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\projectdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\projectdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,11 +38,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LedgerEntry.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\LedgerEntry.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\LedgerEntry.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\LedgerEntry.cs",
+              "RelativeToolTip": "Data\\Entities\\LedgerEntry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:02:45.488Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "JournalLine.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\JournalLine.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\JournalLine.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\JournalLine.cs",
+              "RelativeToolTip": "Data\\Entities\\JournalLine.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:02:40.619Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "JournalEntry.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\JournalEntry.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\JournalEntry.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\JournalEntry.cs",
+              "RelativeToolTip": "Data\\Entities\\JournalEntry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:02:33.133Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountingService.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Services\\AccountingService.cs",
+              "RelativeDocumentMoniker": "Services\\AccountingService.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Services\\AccountingService.cs",
+              "RelativeToolTip": "Services\\AccountingService.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAqwP0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:01:58.611Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "JournalController.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\JournalController.cs",
+              "RelativeDocumentMoniker": "Controllers\\JournalController.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\JournalController.cs",
+              "RelativeToolTip": "Controllers\\JournalController.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAIwJMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:01:54.806Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "ProjectDbContext.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\ProjectDbContext.cs",
               "RelativeDocumentMoniker": "Data\\ProjectDbContext.cs",
@@ -35,13 +120,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "ChartOfAccountsController.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ChartOfAccountsController.cs",
               "RelativeDocumentMoniker": "Controllers\\ChartOfAccountsController.cs",
               "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ChartOfAccountsController.cs",
               "RelativeToolTip": "Controllers\\ChartOfAccountsController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACEAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwC0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T08:43:09.692Z",
               "EditorCaption": ""

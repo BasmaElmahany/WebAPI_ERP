@@ -31,6 +31,68 @@ namespace WebAPI.Services
             return entry.Id;
         }
 
+
+        public async Task UpdateJournalEntryAsync(string projectSchema, int journalEntryId, JournalEntry updatedEntry, IEnumerable<JournalLine> updatedLines)
+        {
+            using var db = _factory.Create(projectSchema);
+            using var tx = await db.Database.BeginTransactionAsync();
+
+            var entry = await db.JournalEntries
+              //  .Include(e => e.Lines)
+                .FirstOrDefaultAsync(e => e.Id == journalEntryId);
+
+            if (entry == null)
+                throw new InvalidOperationException("Journal entry not found.");
+
+            if (entry.Posted)
+                throw new InvalidOperationException("Cannot edit a posted journal entry.");
+
+            // ✅ تحديث بيانات الرأس (Header)
+            entry.Date = updatedEntry.Date;
+            entry.Description = updatedEntry.Description;
+            entry.EntryNumber = updatedEntry.EntryNumber;
+
+            // ✅ حذف الخطوط القديمة
+            var oldLines = await db.JournalLines.Where(l => l.JournalEntryId == journalEntryId).ToListAsync();
+            db.JournalLines.RemoveRange(oldLines);
+
+            // ✅ إضافة الخطوط الجديدة
+            foreach (var l in updatedLines)
+            {
+                l.JournalEntryId = entry.Id;
+                await db.JournalLines.AddAsync(l);
+            }
+
+            await db.SaveChangesAsync();
+            await tx.CommitAsync();
+        }
+
+
+        public async Task DeleteJournalEntryAsync(string projectSchema, int journalEntryId)
+        {
+            using var db = _factory.Create(projectSchema);
+            using var tx = await db.Database.BeginTransactionAsync();
+
+            var entry = await db.JournalEntries
+               // .Include(e => e.Lines)
+                .FirstOrDefaultAsync(e => e.Id == journalEntryId);
+
+            if (entry == null)
+                throw new InvalidOperationException("Journal entry not found.");
+
+            if (entry.Posted)
+                throw new InvalidOperationException("Cannot delete a posted journal entry.");
+
+            // ✅ حذف الخطوط المرتبطة أولاً
+            IEnumerable<JournalLine> lines = db.JournalLines.Where(j=>j.JournalEntryId==entry.Id);
+            db.JournalLines.RemoveRange(lines);
+            // ✅ ثم حذف القيد نفسه
+            db.JournalEntries.Remove(entry);
+
+            await db.SaveChangesAsync();
+            await tx.CommitAsync();
+        }
+
         // Post an entry: move journal lines into ledger and update balances
         public async Task PostJournalEntryAsync(string projectSchema, int journalEntryId)
         {
@@ -77,6 +139,36 @@ namespace WebAPI.Services
             await db.SaveChangesAsync();
             await tx.CommitAsync();
         }
+
+        public async Task UnpostJournalEntryAsync(string projectSchema, int journalEntryId)
+        {
+            using var db = _factory.Create(projectSchema);
+            using var tx = await db.Database.BeginTransactionAsync();
+
+            var entry = await db.JournalEntries
+               // .Include(e => e.Lines)
+                .FirstOrDefaultAsync(e => e.Id == journalEntryId);
+
+            if (entry == null)
+                throw new InvalidOperationException("Journal entry not found.");
+
+            if (!entry.Posted)
+                throw new InvalidOperationException("This journal entry is not posted.");
+
+            // ✅ حذف تأثير القيد من الأستاذ العام (Ledger)
+            var ledgerLines = db.LedgerEntries
+                .Where(l => l.JournalEntryId == entry.Id);
+
+            db.LedgerEntries.RemoveRange(ledgerLines);
+
+            // ✅ تعديل حالة القيد
+            entry.Posted = false;
+
+
+            await db.SaveChangesAsync();
+            await tx.CommitAsync();
+        }
+
 
         // Trial Balance: sum debits & credits per account
         public async Task<IEnumerable<object>> GetTrialBalance(string projectSchema)
