@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:services\\accountingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\journalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\journalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\chartofaccountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\chartofaccountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -58,10 +62,6 @@
       "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\erpmastercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\journalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\journalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\data\\entities\\expense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:data\\entities\\expense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -105,7 +105,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ChartOfAccountsController.cs",
               "DocumentMoniker": "C:\\Users\\basma.khalaf\\AppData\\Local\\SourceServer\\b65e42771cccc829ae26ff8872270fd13b38f1bb8a3a3788174e1cc4ff3d2af3\\Controllers\\ChartOfAccountsController.cs",
               "ToolTip": "C:\\Users\\basma.khalaf\\AppData\\Local\\SourceServer\\b65e42771cccc829ae26ff8872270fd13b38f1bb8a3a3788174e1cc4ff3d2af3\\Controllers\\ChartOfAccountsController.cs [Read Only]",
@@ -116,7 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "CreateJournalDto.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Models\\CreateJournalDto.cs",
               "RelativeDocumentMoniker": "Models\\CreateJournalDto.cs",
@@ -124,12 +124,11 @@
               "RelativeToolTip": "Models\\CreateJournalDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T13:13:23.22Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T13:13:23.22Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "ProjectDbContextDesignFactory.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\ProjectDbContextDesignFactory.cs",
               "RelativeDocumentMoniker": "Data\\ProjectDbContextDesignFactory.cs",
@@ -137,12 +136,11 @@
               "RelativeToolTip": "Data\\ProjectDbContextDesignFactory.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAkwBYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T12:32:25.997Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T12:32:25.997Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "ProjectModelCacheKeyFactory.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\ProjectModelCacheKeyFactory.cs",
               "RelativeDocumentMoniker": "Data\\ProjectModelCacheKeyFactory.cs",
@@ -150,12 +148,11 @@
               "RelativeToolTip": "Data\\ProjectModelCacheKeyFactory.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T12:28:11.157Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T12:28:11.157Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "ProjectDbContextFactory.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\ProjectDbContextFactory.cs",
               "RelativeDocumentMoniker": "Data\\ProjectDbContextFactory.cs",
@@ -163,12 +160,11 @@
               "RelativeToolTip": "Data\\ProjectDbContextFactory.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T12:28:06.526Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T12:28:06.526Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "ErpMasterContext.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\ErpMasterContext.cs",
               "RelativeDocumentMoniker": "Data\\ErpMasterContext.cs",
@@ -176,12 +172,11 @@
               "RelativeToolTip": "Data\\ErpMasterContext.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAgwAYAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T12:25:46.153Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T12:25:46.153Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "AccountWithChartDto.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Models\\AccountWithChartDto.cs",
               "RelativeDocumentMoniker": "Models\\AccountWithChartDto.cs",
@@ -189,12 +184,11 @@
               "RelativeToolTip": "Models\\AccountWithChartDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T12:11:16.113Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T12:11:16.113Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
@@ -202,12 +196,11 @@
               "RelativeToolTip": "Controllers\\AuthController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T11:24:30.671Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T11:24:30.671Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ProjectsController.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ProjectsController.cs",
               "RelativeDocumentMoniker": "Controllers\\ProjectsController.cs",
@@ -215,8 +208,7 @@
               "RelativeToolTip": "Controllers\\ProjectsController.cs",
               "ViewState": "AgIAANkAAAAAAAAAAAAcwOwAAABjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T11:24:16.881Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T11:24:16.881Z"
             },
             {
               "$type": "Document",
@@ -244,7 +236,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ChartOfAccount.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\ChartOfAccount.cs",
               "RelativeDocumentMoniker": "Data\\Entities\\ChartOfAccount.cs",
@@ -252,12 +244,11 @@
               "RelativeToolTip": "Data\\Entities\\ChartOfAccount.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T11:23:42.256Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T11:23:42.256Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Account.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\Entities\\Account.cs",
               "RelativeDocumentMoniker": "Data\\Entities\\Account.cs",
@@ -265,8 +256,7 @@
               "RelativeToolTip": "Data\\Entities\\Account.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T11:18:47.767Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T11:18:47.767Z"
             },
             {
               "$type": "Document",
@@ -278,8 +268,7 @@
               "RelativeToolTip": "Data\\Entities\\Expense.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T11:18:42.593Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T11:18:42.593Z"
             },
             {
               "$type": "Document",
@@ -315,8 +304,7 @@
               "RelativeToolTip": "Data\\Entities\\LedgerEntry.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T12:02:45.488Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-11T12:02:45.488Z"
             },
             {
               "$type": "Document",
@@ -350,14 +338,14 @@
               "RelativeDocumentMoniker": "Services\\AccountingService.cs",
               "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Services\\AccountingService.cs",
               "RelativeToolTip": "Services\\AccountingService.cs",
-              "ViewState": "AgIAAKUAAAAAAAAAAAAUwM4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAwwHYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T12:01:58.611Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 1,
               "Title": "JournalController.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\JournalController.cs",
               "RelativeDocumentMoniker": "Controllers\\JournalController.cs",
@@ -370,7 +358,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ProjectDbContext.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Data\\ProjectDbContext.cs",
               "RelativeDocumentMoniker": "Data\\ProjectDbContext.cs",
@@ -378,18 +366,17 @@
               "RelativeToolTip": "Data\\ProjectDbContext.cs",
               "ViewState": "AgIAABoAAAAAAAAAAAAwwBsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T08:48:32.257Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-11T08:48:32.257Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ChartOfAccountsController.cs",
               "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ChartOfAccountsController.cs",
               "RelativeDocumentMoniker": "Controllers\\ChartOfAccountsController.cs",
-              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ChartOfAccountsController.cs*",
-              "RelativeToolTip": "Controllers\\ChartOfAccountsController.cs*",
-              "ViewState": "AgIAAH0AAAAAAAAAAAAQwHwAAAAAAAAAAAAAAA==",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ChartOfAccountsController.cs",
+              "RelativeToolTip": "Controllers\\ChartOfAccountsController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAA6wIUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T08:43:09.692Z",
               "EditorCaption": ""

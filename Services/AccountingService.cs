@@ -110,7 +110,12 @@ namespace WebAPI.Services
             foreach (var line in lines)
             {
                 var chart = await db.ChartOfAccounts.FindAsync(line.AccountId);
+                if (chart == null)
+                    throw new Exception($"ChartOfAccount missing for account ID {line.AccountId}");
+
                 var account = await db.Accounts.FirstOrDefaultAsync(a => a.AccountId == line.AccountId);
+                if (account == null)
+                    throw new Exception($"Account table entry missing for account ID {line.AccountId}");
 
                 decimal change = 0;
 
