@@ -1,7 +1,9 @@
 ﻿using WebAPI.Data.Entities;
 using WebAPI.Data;
 using Microsoft.EntityFrameworkCore;
-
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 namespace WebAPI.Services
 {
     public class AccountingService
@@ -101,25 +103,39 @@ namespace WebAPI.Services
 
             var entry = await db.JournalEntries.FindAsync(journalEntryId);
             if (entry == null) throw new InvalidOperationException("Journal entry not found");
-            if (entry.Posted) { return; }
+            if (entry.Posted) return;
 
-            var lines = await db.JournalLines.Where(x => x.JournalEntryId == journalEntryId).ToListAsync();
-
-            // Basic validation: debits == credits
-            var totalDebit = lines.Sum(l => l.Debit);
-            var totalCredit = lines.Sum(l => l.Credit);
-            if (totalDebit != totalCredit)
-                throw new InvalidOperationException("Journal entry not balanced: total debit != total credit");
+            var lines = await db.JournalLines.Where(l => l.JournalEntryId == journalEntryId).ToListAsync();
 
             foreach (var line in lines)
             {
-                var last = await db.LedgerEntries
-                    .Where(l => l.AccountId == line.AccountId)
-                    .OrderByDescending(l => l.Date).ThenByDescending(l => l.Id)
-                    .FirstOrDefaultAsync();
+                var chart = await db.ChartOfAccounts.FindAsync(line.AccountId);
+                var account = await db.Accounts.FirstOrDefaultAsync(a => a.AccountId == line.AccountId);
 
-                decimal prevBalance = last?.Balance ?? 0m;
-                decimal newBalance = prevBalance + line.Debit - line.Credit;
+                decimal change = 0;
+
+                switch (chart.AccountType)
+                {
+                    case "Asset":
+                    case "Expense":
+                        change = line.Debit - line.Credit;
+                        break;
+
+                    case "Liability":
+                    case "Equity":
+                    case "Revenue":
+                        change = line.Credit - line.Debit;
+                        break;
+                }
+
+                account.Balance += change;
+
+                // Ledger row
+                var lastBalance = await db.LedgerEntries
+                    .Where(l => l.AccountId == line.AccountId)
+                    .OrderByDescending(l => l.Id)
+                    .Select(l => l.Balance)
+                    .FirstOrDefaultAsync();
 
                 var ledger = new LedgerEntry
                 {
@@ -129,7 +145,7 @@ namespace WebAPI.Services
                     Description = line.Description ?? entry.Description,
                     Debit = line.Debit,
                     Credit = line.Credit,
-                    Balance = newBalance
+                    Balance = lastBalance + (line.Debit - line.Credit)
                 };
 
                 await db.LedgerEntries.AddAsync(ledger);
@@ -137,37 +153,59 @@ namespace WebAPI.Services
 
             entry.Posted = true;
             await db.SaveChangesAsync();
+
             await tx.CommitAsync();
         }
+
+
+
 
         public async Task UnpostJournalEntryAsync(string projectSchema, int journalEntryId)
         {
             using var db = _factory.Create(projectSchema);
             using var tx = await db.Database.BeginTransactionAsync();
 
-            var entry = await db.JournalEntries
-               // .Include(e => e.Lines)
-                .FirstOrDefaultAsync(e => e.Id == journalEntryId);
+            var entry = await db.JournalEntries.FindAsync(journalEntryId);
+            if (entry == null) throw new InvalidOperationException("Entry not found");
+            if (!entry.Posted) throw new InvalidOperationException("Not posted");
 
-            if (entry == null)
-                throw new InvalidOperationException("Journal entry not found.");
+            var lines = await db.JournalLines.Where(l => l.JournalEntryId == journalEntryId).ToListAsync();
 
-            if (!entry.Posted)
-                throw new InvalidOperationException("This journal entry is not posted.");
+            foreach (var line in lines)
+            {
+                var chart = await db.ChartOfAccounts.FindAsync(line.AccountId);
+                var account = await db.Accounts.FirstOrDefaultAsync(a => a.AccountId == line.AccountId);
 
-            // ✅ حذف تأثير القيد من الأستاذ العام (Ledger)
-            var ledgerLines = db.LedgerEntries
-                .Where(l => l.JournalEntryId == entry.Id);
+                decimal change = 0;
 
-            db.LedgerEntries.RemoveRange(ledgerLines);
+                switch (chart.AccountType)
+                {
+                    case "Asset":
+                    case "Expense":
+                        change = -(line.Debit - line.Credit);
+                        break;
 
-            // ✅ تعديل حالة القيد
+                    case "Liability":
+                    case "Equity":
+                    case "Revenue":
+                        change = -(line.Credit - line.Debit);
+                        break;
+                }
+
+                account.Balance += change;
+            }
+
+            db.LedgerEntries.RemoveRange(
+                db.LedgerEntries.Where(l => l.JournalEntryId == journalEntryId)
+            );
+
             entry.Posted = false;
-
 
             await db.SaveChangesAsync();
             await tx.CommitAsync();
         }
+
+
 
 
         // Trial Balance: sum debits & credits per account
@@ -194,17 +232,36 @@ namespace WebAPI.Services
         }
 
         // Income statement (revenues - expenses)
-        public async Task<object> GetIncomeStatement(string projectSchema, DateTime? from = null, DateTime? to = null)
+        public async Task<object> GetIncomeStatement(string projectSchema, DateTime? fromDate = null, DateTime? toDate = null)
         {
             using var db = _factory.Create(projectSchema);
-            var revQ = db.Revenues.AsQueryable();
-            var expQ = db.Expenses.AsQueryable();
 
-            if (from.HasValue) { revQ = revQ.Where(r => r.Date >= from.Value); expQ = expQ.Where(e => e.Date >= from.Value); }
-            if (to.HasValue) { revQ = revQ.Where(r => r.Date <= to.Value); expQ = expQ.Where(e => e.Date <= to.Value); }
+            var query =
+                from l in db.LedgerEntries
+                join c in db.ChartOfAccounts on l.AccountId equals c.Id
+                where (c.AccountType == "Revenue" || c.AccountType == "Expense")
+                      && (!fromDate.HasValue || l.Date >= fromDate.Value)
+                      && (!toDate.HasValue || l.Date <= toDate.Value)
+                group l by c.AccountType into g
+                select new
+                {
+                    Type = g.Key,
+                    Debit = g.Sum(x => x.Debit),
+                    Credit = g.Sum(x => x.Credit)
+                };
 
-            var totalRev = await revQ.SumAsync(r => (decimal?)r.Amount) ?? 0m;
-            var totalExp = await expQ.SumAsync(e => (decimal?)e.Amount) ?? 0m;
+            var list = (await query.ToListAsync())
+                .Select(x => new
+                {
+                    x.Type,
+                    Amount = x.Type == "Revenue"
+                        ? x.Credit - x.Debit
+                        : x.Debit - x.Credit
+                })
+                .ToList();
+
+            var totalRev = list.Where(x => x.Type == "Revenue").Sum(x => x.Amount);
+            var totalExp = list.Where(x => x.Type == "Expense").Sum(x => x.Amount);
 
             return new
             {
@@ -214,33 +271,46 @@ namespace WebAPI.Services
             };
         }
 
+
+
         // Balance sheet: aggregate ledger by account types
         public async Task<object> GetBalanceSheet(string projectSchema)
         {
             using var db = _factory.Create(projectSchema);
 
-            var ledgerGroup = from l in db.LedgerEntries
-                              join c in db.ChartOfAccounts on l.AccountId equals c.Id
-                              group l by c.AccountType into g
-                              select new
-                              {
-                                  AccountType = g.Key,
-                                  Balance = g.Sum(x => x.Debit - x.Credit)
-                              };
+            var query = from l in db.LedgerEntries
+                        join c in db.ChartOfAccounts on l.AccountId equals c.Id
+                        group l by c.AccountType into g
+                        select new
+                        {
+                            Type = g.Key,
+                            Debit = g.Sum(x => x.Debit),
+                            Credit = g.Sum(x => x.Credit)
+                        };
 
-            var list = await ledgerGroup.ToListAsync();
-            var assets = list.FirstOrDefault(x => x.AccountType == "Asset")?.Balance ?? 0m;
-            var liabilities = list.FirstOrDefault(x => x.AccountType == "Liability")?.Balance ?? 0m;
-            var equity = list.FirstOrDefault(x => x.AccountType == "Equity")?.Balance ?? 0m;
+            var list = (await query.ToListAsync())
+                .Select(x => new
+                {
+                    x.Type,
+                    Balance = x.Type == "Asset" || x.Type == "Expense"
+                              ? x.Debit - x.Credit
+                              : x.Credit - x.Debit
+                })
+                .ToList();
+
+            var assets = list.FirstOrDefault(x => x.Type == "Asset")?.Balance ?? 0;
+            var liabilities = list.FirstOrDefault(x => x.Type == "Liability")?.Balance ?? 0;
+            var equity = list.FirstOrDefault(x => x.Type == "Equity")?.Balance ?? 0;
 
             return new
             {
                 Assets = assets,
                 Liabilities = liabilities,
                 Equity = equity,
-                IsBalanced = Math.Round(assets, 2) == Math.Round((liabilities + equity), 2)
+                IsBalanced = Math.Round(assets, 2) == Math.Round(liabilities + equity, 2)
             };
         }
+
 
         // Ledger for account
         public async Task<IEnumerable<LedgerEntry>> GetLedgerForAccount(string projectSchema, int accountId)

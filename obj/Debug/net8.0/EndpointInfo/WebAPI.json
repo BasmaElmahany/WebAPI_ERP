@@ -123,17 +123,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ChartOfAccount"
+                "$ref": "#/components/schemas/AccountWithChartDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ChartOfAccount"
+                "$ref": "#/components/schemas/AccountWithChartDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ChartOfAccount"
+                "$ref": "#/components/schemas/AccountWithChartDto"
               }
             }
           }
@@ -224,17 +224,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ChartOfAccount"
+                "$ref": "#/components/schemas/AccountWithChartDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ChartOfAccount"
+                "$ref": "#/components/schemas/AccountWithChartDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ChartOfAccount"
+                "$ref": "#/components/schemas/AccountWithChartDto"
               }
             }
           }
@@ -246,6 +246,37 @@
         }
       },
       "delete": {
+        "tags": [
+          "ChartOfAccounts"
+        ],
+        "parameters": [
+          {
+            "name": "project",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/{project}/chart-of-accounts/{id}/dto": {
+      "get": {
         "tags": [
           "ChartOfAccounts"
         ],
@@ -782,29 +813,20 @@
   },
   "components": {
     "schemas": {
-      "ChartOfAccount": {
-        "required": [
-          "accountCode",
-          "accountName",
-          "accountType"
-        ],
+      "AccountWithChartDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
           "accountCode": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "accountName": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "accountType": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "parentAccountId": {
             "type": "integer",
@@ -813,6 +835,14 @@
           },
           "isDetail": {
             "type": "boolean"
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "openingBalance": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false

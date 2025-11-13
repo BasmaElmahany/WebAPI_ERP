@@ -29,8 +29,8 @@
         "IsRequired": true
       },
       {
-        "Name": "model",
-        "Type": "WebAPI.Data.Entities.ChartOfAccount",
+        "Name": "dto",
+        "Type": "WebAPI.Models.AccountWithChartDto",
         "IsRequired": true
       }
     ],
@@ -76,8 +76,8 @@
         "IsRequired": true
       },
       {
-        "Name": "model",
-        "Type": "WebAPI.Data.Entities.ChartOfAccount",
+        "Name": "dto",
+        "Type": "WebAPI.Models.AccountWithChartDto",
         "IsRequired": true
       }
     ],
@@ -88,6 +88,27 @@
     "Method": "Delete",
     "RelativePath": "api/{project}/chart-of-accounts/{id}",
     "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "project",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPI.Controllers.ChartOfAccountsController",
+    "Method": "GetDto",
+    "RelativePath": "api/{project}/chart-of-accounts/{id}/dto",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [

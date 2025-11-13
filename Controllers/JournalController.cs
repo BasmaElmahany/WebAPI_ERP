@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
             return CreatedAtAction(nameof(Get), new { project, id }, new { id });
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string project, int id, [FromBody] CreateJournalDto dto)
+        public async Task<IActionResult> Update(string project, int id, [FromBody] CreateJournalDto dto)                                               
         {
             using var db = _factory.Create(project);
 
