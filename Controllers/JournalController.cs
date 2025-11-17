@@ -106,7 +106,7 @@ namespace WebAPI.Controllers
                 .OrderByDescending(e => e.Date)
                 .ToListAsync();
 
-            return Ok(list);
+            return Ok(new { list });
         }
 
         [HttpPost("{id}/post")]

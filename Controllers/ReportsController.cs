@@ -15,28 +15,35 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> TrialBalance(string project)
         {
             var tb = await _service.GetTrialBalance(project);
-            return Ok(tb);
+            return Ok(new { list = tb });
         }
 
         [HttpGet("income-statement")]
         public async Task<IActionResult> IncomeStatement(string project, DateTime? from = null, DateTime? to = null)
         {
             var res = await _service.GetIncomeStatement(project, from, to);
-            return Ok(res);
+            return Ok(new { list = res });
         }
 
         [HttpGet("balance-sheet")]
         public async Task<IActionResult> BalanceSheet(string project)
         {
             var res = await _service.GetBalanceSheet(project);
-            return Ok(res);
+            return Ok(new { list = res });
         }
 
         [HttpGet("ledger/{accountId}")]
         public async Task<IActionResult> Ledger(string project, int accountId)
         {
             var res = await _service.GetLedgerForAccount(project, accountId);
-            return Ok(res);
+            return Ok(new { list = res });
+        }
+
+        [HttpGet("generaledger")]
+        public async Task<IActionResult> GeneraLedger(string project)
+        { 
+            var res = await _service.GetLedgerForProject(project);
+            return Ok(new { list = res });
         }
     }
 }

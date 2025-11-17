@@ -156,12 +156,18 @@ namespace WebAPI
             {
                 options.AddPolicy("AllowAngularDevClient", policy =>
                 {
-                    policy.WithOrigins("http://localhost:4200")
+                    policy.WithOrigins("http://localhost:4200" , "http://172.16.1.36:81", "http://localhost:81")
                           .AllowAnyHeader()
                           .AllowAnyMethod()
                           .AllowCredentials();
                 });
             });
+            builder.Services.Configure<JsonOptions>(options =>
+            {
+                options.JsonSerializerOptions.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+                options.JsonSerializerOptions.WriteIndented = false;
+            });
+
 
             // 🧩 Build App
             var app = builder.Build();
@@ -171,6 +177,11 @@ namespace WebAPI
                 Console.WriteLine($"➡️ Incoming Request: {context.Request.Method} {context.Request.Path}");
                 await next();
                 Console.WriteLine($"⬅️ Response Status: {context.Response.StatusCode}");
+            });
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers["Content-Type"] = "application/json; charset=utf-8";
+                await next();
             });
 
             // 🧩 Swagger & Dev Tools
@@ -183,7 +194,11 @@ namespace WebAPI
 
             // 🧩 Middleware order (important)
             app.UseHttpsRedirection();
-
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers["Content-Type"] = "application/json";
+                await next();
+            });
             app.UseRouting();
 
             app.UseCors("AllowAngularDevClient");

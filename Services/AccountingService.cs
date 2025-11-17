@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI.Models;
 namespace WebAPI.Services
 {
     public class AccountingService
@@ -322,6 +323,31 @@ namespace WebAPI.Services
         {
             using var db = _factory.Create(projectSchema);
             return await db.LedgerEntries.Where(l => l.AccountId == accountId).OrderBy(l => l.Date).ThenBy(l => l.Id).ToListAsync();
+        }
+        // Ledger for project
+        public async Task<IEnumerable<General_Ledger>> GetLedgerForProject(string projectSchema)
+        {
+            using var db = _factory.Create(projectSchema);
+
+            var result =
+                await (from d in db.LedgerEntries
+                       join c in db.ChartOfAccounts
+                            on d.AccountId equals c.Id
+                       join j in db.JournalEntries
+                            on d.JournalEntryId equals j.Id
+                       orderby d.Date, d.Id
+                       select new General_Ledger
+                       {
+                           AccountName = c.AccountName,
+                           AccountType = c.AccountType,
+                           Description = j.Description ?? "",
+                           Debit = d.Debit,
+                           Credit = d.Credit,
+                           Balance = d.Balance,
+                           Date = d.Date
+                       }).ToListAsync();
+
+            return result;
         }
     }
 }

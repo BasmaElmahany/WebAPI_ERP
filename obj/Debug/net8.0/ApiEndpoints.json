@@ -306,6 +306,22 @@
   },
   {
     "ContainingType": "WebAPI.Controllers.ReportsController",
+    "Method": "GeneraLedger",
+    "RelativePath": "api/{project}/reports/generalledger",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "project",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebAPI.Controllers.ReportsController",
     "Method": "IncomeStatement",
     "RelativePath": "api/{project}/reports/income-statement",
     "HttpMethod": "GET",

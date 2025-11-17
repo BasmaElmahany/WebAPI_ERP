@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         {
             using var db = _factory.Create(project);
             var list = await db.ChartOfAccounts.OrderBy(x => x.AccountCode).ToListAsync();
-            return Ok(list);
+            return Ok(new { list });
         }
         [HttpGet("List")]
         public async Task<IActionResult> GetAccountList(string project)
@@ -33,7 +33,7 @@ namespace WebAPI.Controllers
                 c.Id ,
                 c.AccountName
             }).ToListAsync();
-            return Ok(list);
+            return Ok(new { list });
         }
 
         [HttpGet("{id}")]
