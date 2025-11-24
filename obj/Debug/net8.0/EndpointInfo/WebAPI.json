@@ -787,7 +787,7 @@
         }
       }
     },
-    "/api/{project}/reports/generalledger": {
+    "/api/{project}/reports/generaledger": {
       "get": {
         "tags": [
           "Reports"

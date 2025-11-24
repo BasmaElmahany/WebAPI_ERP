@@ -307,7 +307,7 @@
   {
     "ContainingType": "WebAPI.Controllers.ReportsController",
     "Method": "GeneraLedger",
-    "RelativePath": "api/{project}/reports/generalledger",
+    "RelativePath": "api/{project}/reports/generaledger",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

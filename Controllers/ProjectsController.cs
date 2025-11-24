@@ -199,22 +199,49 @@ namespace WebAPI.Controllers
                 await _context.Database.BeginTransactionAsync();
                 try
                 {
-                    await _context.Database.ExecuteSqlRawAsync($"CREATE SCHEMA [{newSchema}]");
+                    // 1) Create schema (dynamic SQL)
+                    string createSchema = @"
+            DECLARE @sql NVARCHAR(MAX);
+            SET @sql = N'CREATE SCHEMA [' + @schemaName + N']';
+            EXEC (@sql);
+        ";
 
-                    string moveSql = $@"
-                        DECLARE @sql NVARCHAR(MAX) = N'';
-                        SELECT @sql += 'ALTER SCHEMA [{newSchema}] TRANSFER [{oldSchema}].[' + t.name + '];'
-                        FROM sys.tables t
-                        JOIN sys.schemas s ON t.schema_id = s.schema_id
-                        WHERE s.name = '{oldSchema}';
-                        EXEC (@sql);
-                    ";
+                    await _context.Database.ExecuteSqlRawAsync(
+                        createSchema,
+                        new SqlParameter("@schemaName", newSchema)
+                    );
 
-                    await _context.Database.ExecuteSqlRawAsync(moveSql);
-                    await _context.Database.ExecuteSqlRawAsync($"DROP SCHEMA [{oldSchema}]");
+                    // 2) Move tables
+                    string moveSql = @"
+            DECLARE @sql NVARCHAR(MAX) = N'';
+            SELECT @sql += N'ALTER SCHEMA [' + @newSchema + N'] TRANSFER [' + @oldSchema + N'].[' + t.name + N'];'
+            FROM sys.tables t
+            JOIN sys.schemas s ON t.schema_id = s.schema_id
+            WHERE s.name = @oldSchema;
 
+            EXEC(@sql);
+        ";
+
+                    await _context.Database.ExecuteSqlRawAsync(
+                        moveSql,
+                        new SqlParameter("@oldSchema", oldSchema),
+                        new SqlParameter("@newSchema", newSchema)
+                    );
+
+                    // 3) Drop old schema (dynamic SQL)
+                    string dropSchema = @"
+            DECLARE @sql NVARCHAR(MAX);
+            SET @sql = N'DROP SCHEMA [' + @schemaName + N']';
+            EXEC (@sql);
+        ";
+
+                    await _context.Database.ExecuteSqlRawAsync(
+                        dropSchema,
+                        new SqlParameter("@schemaName", oldSchema)
+                    );
+
+                    // Update record
                     project.Name = newSchema;
-
                     await _context.SaveChangesAsync();
                     await _context.Database.CommitTransactionAsync();
 
@@ -226,6 +253,7 @@ namespace WebAPI.Controllers
                     return Fail("Error renaming schema: " + ex.Message);
                 }
             }
+
 
             await _context.SaveChangesAsync();
             return Success(project, "Project updated successfully.");
