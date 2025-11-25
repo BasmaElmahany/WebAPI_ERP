@@ -349,6 +349,64 @@ namespace WebAPI.Services
 
             return result;
         }
+        public async Task<IEnumerable<object>> GetCashFlowForAllAccounts(string projectSchema, DateTime? from = null, DateTime? to = null)
+        {
+            using var db = _factory.Create(projectSchema);
+
+            var ledger = db.LedgerEntries.AsQueryable();
+
+            if (from.HasValue)
+                ledger = ledger.Where(x => x.Date >= from.Value);
+
+            if (to.HasValue)
+                ledger = ledger.Where(x => x.Date <= to.Value);
+
+            var query =
+                from l in ledger
+                join c in db.ChartOfAccounts on l.AccountId equals c.Id
+                group l by new { c.Id, c.AccountName, c.AccountType } into g
+                select new
+                {
+                    AccountId = g.Key.Id,
+                    g.Key.AccountName,
+                    g.Key.AccountType,
+                    Inflow = g.Sum(x => x.Debit),
+                    Outflow = g.Sum(x => x.Credit),
+                    NetCashFlow = g.Sum(x => x.Debit - x.Credit)
+                };
+
+            return await query.ToListAsync<object>();
+        }
+
+        public async Task<decimal> GetAvailableCash(string projectSchema)
+        {
+            using var db = _factory.Create(projectSchema);
+
+            var cashAccounts = await db.ChartOfAccounts
+                .Where(a =>
+                    a.AccountName.Contains("نقد") ||
+                    a.AccountName.Contains("Cash") ||
+                    a.AccountName.Contains("بنك") ||
+                    a.AccountName.Contains("Bank") || a.AccountName.Contains("النقدية") || a.AccountName.Contains("حساب بنكي") || a.AccountName.Contains("البنك") || a.AccountName.Contains("الحساب البنكي"))
+                .ToListAsync();
+
+            decimal total = 0;
+
+            foreach (var acc in cashAccounts)
+            {
+                var balance = await db.LedgerEntries
+                    .Where(x => x.AccountId == acc.Id)
+                    .OrderByDescending(x => x.Id)
+                    .Select(x => x.Balance)
+                    .FirstOrDefaultAsync();
+
+                total += balance;
+            }
+
+            return total;
+        }
+
+
     }
 }
 

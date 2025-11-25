@@ -45,5 +45,18 @@ namespace WebAPI.Controllers
             var res = await _service.GetLedgerForProject(project);
             return Ok(new { list = res });
         }
+        [HttpGet("cash-flow")]
+        public async Task<IActionResult> CashFlow(string project, DateTime? from = null, DateTime? to = null)
+        {
+            var res = await _service.GetCashFlowForAllAccounts(project, from, to);
+            return Ok(new { list = res });
+        }
+        [HttpGet("available-cash")]
+        public async Task<IActionResult> AvailableCash(string project)
+        {
+            var cash = await _service.GetAvailableCash(project);
+            return Ok(new { availableCash = cash });
+        }
+
     }
 }
