@@ -58,5 +58,12 @@ namespace WebAPI.Controllers
             return Ok(new { availableCash = cash });
         }
 
+        [HttpGet("GeneralBalanceSheet")]
+        public async Task<IActionResult> GeneralBalanceSheet(string project)
+        {
+            var generalb = await _service.GetGeneralBalance(project);
+            return Ok(new { generalb });
+        }
+
     }
 }

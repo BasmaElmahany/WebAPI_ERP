@@ -406,6 +406,122 @@ namespace WebAPI.Services
             return total;
         }
 
+        /* public async Task<object> GetGeneralBalance (string projectSchema)
+         {
+             using var db = _factory.Create(projectSchema);
+             var query =
+                from l in db.LedgerEntries
+                join c in db.ChartOfAccounts on l.AccountId equals c.Id
+                where (c.AccountType == "Revenue" || c.AccountType == "Expense")
+
+                group l by c.AccountType into g
+                select new
+                {
+                    Type = g.Key,
+                    Debit = g.Sum(x => x.Debit),
+                    Credit = g.Sum(x => x.Credit)
+                };
+
+             var list = (await query.ToListAsync())
+                 .Select(x => new
+                 {
+                     x.Type,
+                     Amount = x.Type == "Revenue"
+                         ? x.Credit - x.Debit
+                         : x.Debit - x.Credit
+                 })
+                 .ToList();
+
+             var totalRev = list.Where(x => x.Type == "Revenue").Sum(x => x.Amount);
+             var totalExp = list.Where(x => x.Type == "Expense").Sum(x => x.Amount);
+             var NetProfit = totalRev - totalExp;
+
+
+         }*/
+
+        public async Task<object> GetGeneralBalance(string projectSchema)
+        {
+            using var db = _factory.Create(projectSchema);
+
+            //------------------ 1. GET ALL ACCOUNTS WITH BALANCES ------------------
+            var accountsQuery =
+                from l in db.LedgerEntries
+                join c in db.ChartOfAccounts on l.AccountId equals c.Id
+                group l by new { c.Id, c.AccountName, c.AccountType } into g
+                select new
+                {
+                    g.Key.Id,
+                    g.Key.AccountName,
+                    g.Key.AccountType,
+                    TotalDebit = g.Sum(x => x.Debit),
+                    TotalCredit = g.Sum(x => x.Credit),
+                    FinalBalance = g.Sum(x => x.Debit) - g.Sum(x => x.Credit)
+                };
+
+            var accountsList = await accountsQuery.ToListAsync();
+
+
+            //------------------ 2. REVENUE & EXPENSE (Special FinalBalance rules) ------------------
+            var revExp = accountsList
+                .Where(x => x.AccountType == "Revenue" || x.AccountType == "Expense")
+                .Select(x => new
+                {
+                    x.AccountName,
+                    x.AccountType,
+                    x.TotalDebit,
+                    x.TotalCredit,
+                    FinalBalance = x.AccountType == "Revenue"
+                        ? x.TotalCredit - x.TotalDebit
+                        : x.TotalDebit - x.TotalCredit
+                })
+                .ToList();
+
+            decimal totalRevenue = revExp.Where(x => x.AccountType == "Revenue").Sum(x => x.FinalBalance);
+            decimal totalExpense = revExp.Where(x => x.AccountType == "Expense").Sum(x => x.FinalBalance);
+            decimal netProfit = totalRevenue - totalExpense;
+
+
+            //------------------ 3. ASSETS (Asset + Current Asset - Contra Asset) ------------------
+            var assets = accountsList
+                .Where(x =>
+                    x.AccountType == "Asset" ||
+                    x.AccountType == "Current Asset" ||
+                    x.AccountType == "Contra Asset")
+                .ToList();
+
+            decimal totalAssets = assets.Sum(x => x.FinalBalance);
+
+
+            //------------------ 4. LIABILITIES ------------------
+            var liabilities = accountsList
+                .Where(x => x.AccountType == "Liability")
+                .ToList();
+
+            decimal totalLiabilities = liabilities.Sum(x => x.FinalBalance);
+
+
+            //------------------ 5. RETURN MERGED & SUMMED RESULT ------------------
+            return new
+            {
+                TotalAssets = totalAssets,
+                Assets = assets,
+
+                TotalLiabilities = totalLiabilities,
+                Liabilities = liabilities,
+
+                TotalRevenue = totalRevenue,
+                Revenues = revExp.Where(x => x.AccountType == "Revenue").ToList(),
+
+                TotalExpenses = totalExpense,
+                Expenses = revExp.Where(x => x.AccountType == "Expense").ToList(),
+
+                Equity = new
+                {
+                    NetProfit = netProfit
+                }
+            };
+        }
+
 
     }
 }
