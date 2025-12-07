@@ -1,12 +1,20 @@
 {
   "Version": 1,
-  "Hash": "JXgpUhs8tJXfIpevQC7jaPP/yQ3T7X8JrdP/Yvx6UuE=",
+  "Hash": "ftFraA7tw8J6naQiHGfMkuamb7/tkjjSHCnVmBOJT9I=",
   "Source": "WebAPI",
   "BasePath": "_content/WebAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "WebAPI\\wwwroot",
+      "Source": "WebAPI",
+      "ContentRoot": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\",
+      "BasePath": "_content/WebAPI",
+      "Pattern": "**"
+    }
+  ],
   "Assets": [
     {
       "Identity": "C:\\Users\\basma.khalaf\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.0\\staticwebassets\\V5\\css\\site.css",
@@ -1267,6 +1275,132 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\basma.khalaf\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.0\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\2b2eecc7-16cd-42d3-8089-3a0f924ff34f.png",
+      "SourceId": "WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\",
+      "BasePath": "_content/WebAPI",
+      "RelativePath": "images/journals/2b2eecc7-16cd-42d3-8089-3a0f924ff34f#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ca2v3uy6gs",
+      "Integrity": "rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\journals\\2b2eecc7-16cd-42d3-8089-3a0f924ff34f.png"
+    },
+    {
+      "Identity": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\8b4e4f92-99d3-413d-a539-10eadabbb934.png",
+      "SourceId": "WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\",
+      "BasePath": "_content/WebAPI",
+      "RelativePath": "images/journals/8b4e4f92-99d3-413d-a539-10eadabbb934#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ca2v3uy6gs",
+      "Integrity": "rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\journals\\8b4e4f92-99d3-413d-a539-10eadabbb934.png"
+    },
+    {
+      "Identity": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\bbd5bfae-ea4b-44d9-9994-bc7de0c35fbc.png",
+      "SourceId": "WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\",
+      "BasePath": "_content/WebAPI",
+      "RelativePath": "images/journals/bbd5bfae-ea4b-44d9-9994-bc7de0c35fbc#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ca2v3uy6gs",
+      "Integrity": "rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\journals\\bbd5bfae-ea4b-44d9-9994-bc7de0c35fbc.png"
+    },
+    {
+      "Identity": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\c64116b1-4db2-488b-bcce-b05653d31bd7.png",
+      "SourceId": "WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\",
+      "BasePath": "_content/WebAPI",
+      "RelativePath": "images/journals/c64116b1-4db2-488b-bcce-b05653d31bd7#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ptpgrp9igv",
+      "Integrity": "vfW9yONWg/1E48zTtncS69G635ATlh/RNIIX9x8Jv04=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\journals\\c64116b1-4db2-488b-bcce-b05653d31bd7.png"
+    },
+    {
+      "Identity": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\d74e4c74-9224-4379-95fe-fda52d2e3ff1.png",
+      "SourceId": "WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\",
+      "BasePath": "_content/WebAPI",
+      "RelativePath": "images/journals/d74e4c74-9224-4379-95fe-fda52d2e3ff1#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5ipweew5fc",
+      "Integrity": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\journals\\d74e4c74-9224-4379-95fe-fda52d2e3ff1.png"
+    },
+    {
+      "Identity": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\e1e634ef-2866-4ca3-b3b5-18da1b912167.png",
+      "SourceId": "WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\",
+      "BasePath": "_content/WebAPI",
+      "RelativePath": "images/journals/e1e634ef-2866-4ca3-b3b5-18da1b912167#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ca2v3uy6gs",
+      "Integrity": "rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\journals\\e1e634ef-2866-4ca3-b3b5-18da1b912167.png"
     }
   ],
   "Endpoints": [
@@ -3487,6 +3621,498 @@
         {
           "Name": "integrity",
           "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
+        }
+      ]
+    },
+    {
+      "Route": "images/journals/2b2eecc7-16cd-42d3-8089-3a0f924ff34f.ca2v3uy6gs.png",
+      "AssetFile": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\2b2eecc7-16cd-42d3-8089-3a0f924ff34f.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "777937"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Dec 2025 13:36:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ca2v3uy6gs"
+        },
+        {
+          "Name": "label",
+          "Value": "images/journals/2b2eecc7-16cd-42d3-8089-3a0f924ff34f.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE="
+        }
+      ]
+    },
+    {
+      "Route": "images/journals/2b2eecc7-16cd-42d3-8089-3a0f924ff34f.png",
+      "AssetFile": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\2b2eecc7-16cd-42d3-8089-3a0f924ff34f.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "777937"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Dec 2025 13:36:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE="
+        }
+      ]
+    },
+    {
+      "Route": "images/journals/8b4e4f92-99d3-413d-a539-10eadabbb934.ca2v3uy6gs.png",
+      "AssetFile": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\8b4e4f92-99d3-413d-a539-10eadabbb934.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "777937"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Dec 2025 12:51:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ca2v3uy6gs"
+        },
+        {
+          "Name": "label",
+          "Value": "images/journals/8b4e4f92-99d3-413d-a539-10eadabbb934.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE="
+        }
+      ]
+    },
+    {
+      "Route": "images/journals/8b4e4f92-99d3-413d-a539-10eadabbb934.png",
+      "AssetFile": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\8b4e4f92-99d3-413d-a539-10eadabbb934.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "777937"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Dec 2025 12:51:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE="
+        }
+      ]
+    },
+    {
+      "Route": "images/journals/bbd5bfae-ea4b-44d9-9994-bc7de0c35fbc.ca2v3uy6gs.png",
+      "AssetFile": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\bbd5bfae-ea4b-44d9-9994-bc7de0c35fbc.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "777937"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Dec 2025 13:35:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ca2v3uy6gs"
+        },
+        {
+          "Name": "label",
+          "Value": "images/journals/bbd5bfae-ea4b-44d9-9994-bc7de0c35fbc.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE="
+        }
+      ]
+    },
+    {
+      "Route": "images/journals/bbd5bfae-ea4b-44d9-9994-bc7de0c35fbc.png",
+      "AssetFile": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\bbd5bfae-ea4b-44d9-9994-bc7de0c35fbc.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "777937"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Dec 2025 13:35:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE="
+        }
+      ]
+    },
+    {
+      "Route": "images/journals/c64116b1-4db2-488b-bcce-b05653d31bd7.png",
+      "AssetFile": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\c64116b1-4db2-488b-bcce-b05653d31bd7.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "757636"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"vfW9yONWg/1E48zTtncS69G635ATlh/RNIIX9x8Jv04=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Dec 2025 12:57:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-vfW9yONWg/1E48zTtncS69G635ATlh/RNIIX9x8Jv04="
+        }
+      ]
+    },
+    {
+      "Route": "images/journals/c64116b1-4db2-488b-bcce-b05653d31bd7.ptpgrp9igv.png",
+      "AssetFile": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\c64116b1-4db2-488b-bcce-b05653d31bd7.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "757636"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"vfW9yONWg/1E48zTtncS69G635ATlh/RNIIX9x8Jv04=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Dec 2025 12:57:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ptpgrp9igv"
+        },
+        {
+          "Name": "label",
+          "Value": "images/journals/c64116b1-4db2-488b-bcce-b05653d31bd7.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-vfW9yONWg/1E48zTtncS69G635ATlh/RNIIX9x8Jv04="
+        }
+      ]
+    },
+    {
+      "Route": "images/journals/d74e4c74-9224-4379-95fe-fda52d2e3ff1.5ipweew5fc.png",
+      "AssetFile": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\d74e4c74-9224-4379-95fe-fda52d2e3ff1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Dec 2025 12:51:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5ipweew5fc"
+        },
+        {
+          "Name": "label",
+          "Value": "images/journals/d74e4c74-9224-4379-95fe-fda52d2e3ff1.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
+      "Route": "images/journals/d74e4c74-9224-4379-95fe-fda52d2e3ff1.png",
+      "AssetFile": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\d74e4c74-9224-4379-95fe-fda52d2e3ff1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Dec 2025 12:51:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
+      "Route": "images/journals/e1e634ef-2866-4ca3-b3b5-18da1b912167.ca2v3uy6gs.png",
+      "AssetFile": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\e1e634ef-2866-4ca3-b3b5-18da1b912167.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "777937"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Dec 2025 13:44:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ca2v3uy6gs"
+        },
+        {
+          "Name": "label",
+          "Value": "images/journals/e1e634ef-2866-4ca3-b3b5-18da1b912167.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE="
+        }
+      ]
+    },
+    {
+      "Route": "images/journals/e1e634ef-2866-4ca3-b3b5-18da1b912167.png",
+      "AssetFile": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\e1e634ef-2866-4ca3-b3b5-18da1b912167.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "777937"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Dec 2025 13:44:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rCeo8izYflH7Vv4DZinRHrvDR4uxtSl7syybfraj6yE="
         }
       ]
     }

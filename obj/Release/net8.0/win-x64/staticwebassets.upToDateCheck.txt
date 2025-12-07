@@ -1,0 +1,6 @@
+wwwroot\images\journals\2b2eecc7-16cd-42d3-8089-3a0f924ff34f.png
+wwwroot\images\journals\8b4e4f92-99d3-413d-a539-10eadabbb934.png
+wwwroot\images\journals\bbd5bfae-ea4b-44d9-9994-bc7de0c35fbc.png
+wwwroot\images\journals\c64116b1-4db2-488b-bcce-b05653d31bd7.png
+wwwroot\images\journals\d74e4c74-9224-4379-95fe-fda52d2e3ff1.png
+wwwroot\images\journals\e1e634ef-2866-4ca3-b3b5-18da1b912167.png

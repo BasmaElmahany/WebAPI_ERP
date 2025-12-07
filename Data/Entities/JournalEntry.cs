@@ -8,5 +8,6 @@
         public string? Description { get; set; }
         public bool Posted { get; set; } = false;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public string? PhotoUrl { get; set; }
     }
 }

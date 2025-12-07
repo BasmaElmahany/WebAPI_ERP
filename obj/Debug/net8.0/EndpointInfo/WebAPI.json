@@ -323,19 +323,48 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/CreateJournalDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateJournalDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateJournalDto"
+                "type": "object",
+                "properties": {
+                  "EntryNumber": {
+                    "type": "string"
+                  },
+                  "Date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "Photo": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Lines": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CreateJournalLineDto"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "EntryNumber": {
+                  "style": "form"
+                },
+                "Date": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "Photo": {
+                  "style": "form"
+                },
+                "Lines": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -964,6 +993,11 @@
           },
           "description": {
             "type": "string",
+            "nullable": true
+          },
+          "photo": {
+            "type": "string",
+            "format": "binary",
             "nullable": true
           },
           "lines": {

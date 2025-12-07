@@ -183,6 +183,7 @@ namespace WebAPI
                 context.Response.Headers["Content-Type"] = "application/json; charset=utf-8";
                 await next();
             });
+            app.UseStaticFiles();
 
             // 🧩 Swagger & Dev Tools
             if (app.Environment.IsDevelopment() || app.Environment.IsProduction())

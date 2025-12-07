@@ -21,9 +21,21 @@ namespace WebAPI.Controllers
             _service = service;
         }
         [HttpPost]
-        public async Task<IActionResult> Create(string project, [FromBody] CreateJournalDto dto)
+        public async Task<IActionResult> Create(
+         string project,
+         [FromForm] CreateJournalDto dto,
+         [FromServices] IWebHostEnvironment env)
         {
-            var entry = new JournalEntry { Date = dto.Date, Description = dto.Description, EntryNumber = dto.EntryNumber };
+            var webRootPath = env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+
+
+            var entry = new JournalEntry
+            {
+                Date = dto.Date,
+                Description = dto.Description,
+                EntryNumber = dto.EntryNumber
+            };
+
             var lines = dto.Lines.Select(l => new JournalLine
             {
                 AccountId = l.AccountId,
@@ -32,16 +44,35 @@ namespace WebAPI.Controllers
                 Description = l.Description
             });
 
-            // Basic balance check
+            if (dto.Photo != null && dto.Photo.Length > 0)
+            {
+                var uploadsPath = Path.Combine(webRootPath, "images", "journals");
+
+                if (!Directory.Exists(uploadsPath))
+                    Directory.CreateDirectory(uploadsPath);
+
+                var fileName = Guid.NewGuid() + Path.GetExtension(dto.Photo.FileName);
+                var fullPath = Path.Combine(uploadsPath, fileName);
+
+                using var stream = new FileStream(fullPath, FileMode.Create);
+                await dto.Photo.CopyToAsync(stream);
+
+                entry.PhotoUrl = $"/images/journals/{fileName}";
+            }
+
+            // Balance check
             var totalDebit = dto.Lines.Sum(x => x.Debit);
             var totalCredit = dto.Lines.Sum(x => x.Credit);
+
             if (totalDebit != totalCredit)
                 return BadRequest(new { message = "Journal not balanced. Total debit must equal total credit." });
 
             var id = await _service.CreateJournalEntryAsync(project, entry, lines);
-            await _service.PostJournalEntryAsync(project, id); // auto post
+            await _service.PostJournalEntryAsync(project, id);
+
             return CreatedAtAction(nameof(Get), new { project, id }, new { id });
         }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string project, int id, [FromBody] CreateJournalDto dto)                                               
         {

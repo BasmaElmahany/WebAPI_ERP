@@ -7,6 +7,7 @@ namespace WebAPI.Models
         public string? EntryNumber { get; set; }
         public DateTime Date { get; set; } = DateTime.UtcNow;
         public string? Description { get; set; }
+        public IFormFile? Photo { get; set; }
         public List<CreateJournalLineDto> Lines { get; set; } = new();
     }
 }
