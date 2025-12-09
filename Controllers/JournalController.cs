@@ -4,6 +4,7 @@ using WebAPI.Data;
 using WebAPI.Services;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
+using System.Text.Json;
 
 namespace WebAPI.Controllers
 {
@@ -22,13 +23,39 @@ namespace WebAPI.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> Create(
-         string project,
-         [FromForm] CreateJournalDto dto,
-         [FromServices] IWebHostEnvironment env)
+     string project,
+     [FromForm] CreateJournalDto dto,
+     [FromServices] IWebHostEnvironment env)
         {
-            var webRootPath = env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            Console.WriteLine("RAW>> " + dto.LinesJson);
+            var webRootPath = env.WebRootPath
+                ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
 
+            // -------------------------------
+            // Create project folder dynamically
+            // -------------------------------
+            var safeProjectName = project.Trim();
+            var projectFolder = Path.Combine(webRootPath, "files", safeProjectName);
 
+            if (!Directory.Exists(projectFolder))
+                Directory.CreateDirectory(projectFolder);
+
+            // -------------------------------
+            // Parse LinesJson
+            // -------------------------------
+            var rawJson = dto.LinesJson.Trim();
+
+            if (rawJson.StartsWith("\"") && rawJson.EndsWith("\""))
+            {
+                rawJson = rawJson.Substring(1, rawJson.Length - 2);
+                rawJson = rawJson.Replace("\\\"", "\"");
+            }
+
+            var lineDtos = JsonSerializer.Deserialize<List<CreateJournalLineDto>>(rawJson);
+
+            // -------------------------------
+            // Create Entry
+            // -------------------------------
             var entry = new JournalEntry
             {
                 Date = dto.Date,
@@ -36,45 +63,62 @@ namespace WebAPI.Controllers
                 EntryNumber = dto.EntryNumber
             };
 
-            var lines = dto.Lines.Select(l => new JournalLine
+            var lines = lineDtos.Select(l => new JournalLine
             {
-                AccountId = l.AccountId,
-                Debit = l.Debit,
-                Credit = l.Credit,
-                Description = l.Description
+                AccountId = l.accountId,
+                Debit = l.debit,
+                Credit = l.credit,
+                Description = l.description
             });
 
+            // -------------------------------
+            // File Upload (PDF or IMAGE)
+            // -------------------------------
             if (dto.Photo != null && dto.Photo.Length > 0)
             {
-                var uploadsPath = Path.Combine(webRootPath, "images", "journals");
+                // Allow ONLY image or pdf
+                var allowed = new[] { ".png", ".jpg", ".jpeg", ".pdf" };
+                var ext = Path.GetExtension(dto.Photo.FileName).ToLower();
 
-                if (!Directory.Exists(uploadsPath))
-                    Directory.CreateDirectory(uploadsPath);
+                if (!allowed.Contains(ext))
+                    return BadRequest(new { message = "Only PNG, JPG, JPEG, or PDF files are allowed." });
 
-                var fileName = Guid.NewGuid() + Path.GetExtension(dto.Photo.FileName);
-                var fullPath = Path.Combine(uploadsPath, fileName);
+                var fileName = Guid.NewGuid() + ext;
+                var fullPath = Path.Combine(projectFolder, fileName);
 
                 using var stream = new FileStream(fullPath, FileMode.Create);
                 await dto.Photo.CopyToAsync(stream);
 
-                entry.PhotoUrl = $"/images/journals/{fileName}";
+                // store relative URL
+                entry.PhotoUrl = $"/files/{safeProjectName}/{fileName}";
             }
 
-            // Balance check
-            var totalDebit = dto.Lines.Sum(x => x.Debit);
-            var totalCredit = dto.Lines.Sum(x => x.Credit);
+            // -------------------------------
+            // Balanced Check
+            // -------------------------------
+            var totalDebit = lineDtos.Sum(x => x.debit);
+            var totalCredit = lineDtos.Sum(x => x.credit);
 
             if (totalDebit != totalCredit)
                 return BadRequest(new { message = "Journal not balanced. Total debit must equal total credit." });
 
+            // -------------------------------
+            // Save Entry + Lines
+            // -------------------------------
             var id = await _service.CreateJournalEntryAsync(project, entry, lines);
+
             await _service.PostJournalEntryAsync(project, id);
 
             return CreatedAtAction(nameof(Get), new { project, id }, new { id });
         }
 
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string project, int id, [FromBody] CreateJournalDto dto)                                               
+        public async Task<IActionResult> Update(
+           string project,
+           int id,
+           [FromForm] CreateJournalDto dto,
+           [FromServices] IWebHostEnvironment env)
         {
             using var db = _factory.Create(project);
 
@@ -85,31 +129,110 @@ namespace WebAPI.Controllers
             if (entry.Posted)
                 return BadRequest(new { message = "Cannot edit a posted journal entry." });
 
-            // تأكد من توازن القيد
-            var totalDebit = dto.Lines.Sum(x => x.Debit);
-            var totalCredit = dto.Lines.Sum(x => x.Credit);
+            // ---------------------------------------------
+            // Create dynamic project folder /files/{project}
+            // ---------------------------------------------
+            var webRootPath = env.WebRootPath
+                ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+
+            var safeProjectName = project.Trim();
+            var projectFolder = Path.Combine(webRootPath, "files", safeProjectName);
+
+            if (!Directory.Exists(projectFolder))
+                Directory.CreateDirectory(projectFolder);
+
+            // ---------------------------------------------
+            // Parse LinesJson
+            // ---------------------------------------------
+            if (string.IsNullOrWhiteSpace(dto.LinesJson))
+                return BadRequest(new { message = "LinesJson is required." });
+
+            var rawJson = dto.LinesJson.Trim();
+
+            if (rawJson.StartsWith("\"") && rawJson.EndsWith("\""))
+            {
+                rawJson = rawJson.Substring(1, rawJson.Length - 2);
+                rawJson = rawJson.Replace("\\\"", "\"");
+            }
+
+            List<CreateJournalLineDto> lineDtos;
+            try
+            {
+                lineDtos = JsonSerializer.Deserialize<List<CreateJournalLineDto>>(rawJson);
+            }
+            catch
+            {
+                return BadRequest(new { message = "Invalid LinesJson format." });
+            }
+
+            // ---------------------------------------------
+            // Validate balance
+            // ---------------------------------------------
+            var totalDebit = lineDtos.Sum(x => x.debit);
+            var totalCredit = lineDtos.Sum(x => x.credit);
+
             if (totalDebit != totalCredit)
-                return BadRequest(new { message = "Journal not balanced. Total debit must equal total credit." });
+                return BadRequest(new { message = "Journal not balanced." });
 
-            // إنشاء نسخة جديدة من البيانات المحدثة
-            var updatedEntry = new JournalEntry
-            {
-                Date = dto.Date,
-                Description = dto.Description,
-                EntryNumber = dto.EntryNumber
-            };
+            // ---------------------------------------------
+            // Update entry fields
+            // ---------------------------------------------
+            entry.Date = dto.Date;
+            entry.Description = dto.Description;
+            entry.EntryNumber = dto.EntryNumber;
 
-            var updatedLines = dto.Lines.Select(l => new JournalLine
+            // ---------------------------------------------
+            // File Upload (PDF or IMAGE)
+            // ---------------------------------------------
+            if (dto.Photo != null && dto.Photo.Length > 0)
             {
-                AccountId = l.AccountId,
-                Debit = l.Debit,
-                Credit = l.Credit,
-                Description = l.Description
+                var allowed = new[] { ".png", ".jpg", ".jpeg", ".pdf" };
+                var ext = Path.GetExtension(dto.Photo.FileName).ToLower();
+
+                if (!allowed.Contains(ext))
+                    return BadRequest(new { message = "Only PNG, JPG, JPEG, or PDF files are allowed." });
+
+                // Delete old file if exists
+                if (!string.IsNullOrWhiteSpace(entry.PhotoUrl))
+                {
+                    var oldFile = Path.Combine(webRootPath, entry.PhotoUrl.TrimStart('/').Replace("/", "\\"));
+                    if (System.IO.File.Exists(oldFile))
+                        System.IO.File.Delete(oldFile);
+                }
+
+                // Save new file
+                var fileName = Guid.NewGuid() + ext;
+                var fullPath = Path.Combine(projectFolder, fileName);
+
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                    await dto.Photo.CopyToAsync(stream);
+
+                entry.PhotoUrl = $"/files/{safeProjectName}/{fileName}";
+            }
+
+            // ---------------------------------------------
+            // Replace existing journal lines
+            // ---------------------------------------------
+            var existingLines = db.JournalLines.Where(l => l.JournalEntryId == id);
+            db.JournalLines.RemoveRange(existingLines);
+
+            var newLines = lineDtos.Select(l => new JournalLine
+            {
+                JournalEntryId = id,
+                AccountId = l.accountId,
+                Debit = l.debit,
+                Credit = l.credit,
+                Description = l.description
             });
 
-            await _service.UpdateJournalEntryAsync(project, id, updatedEntry, updatedLines);
+            await db.JournalLines.AddRangeAsync(newLines);
+
+            await db.SaveChangesAsync();
+
             return NoContent();
         }
+
+
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string project, int id)
@@ -132,6 +255,7 @@ namespace WebAPI.Controllers
                     e.EntryNumber,
                     e.Date,
                     e.Description,
+                    e.PhotoUrl,
                     e.Posted
                 })
                 .OrderByDescending(e => e.Date)

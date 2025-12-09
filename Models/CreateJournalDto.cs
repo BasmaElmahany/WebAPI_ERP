@@ -1,4 +1,6 @@
-﻿using static WebAPI.Controllers.JournalController;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Text.Json.Serialization;
+using static WebAPI.Controllers.JournalController;
 
 namespace WebAPI.Models
 {
@@ -8,6 +10,8 @@ namespace WebAPI.Models
         public DateTime Date { get; set; } = DateTime.UtcNow;
         public string? Description { get; set; }
         public IFormFile? Photo { get; set; }
-        public List<CreateJournalLineDto> Lines { get; set; } = new();
+
+        // نستقبل الـ array كـ JSON-string وليس كمصفوفة
+        public string? LinesJson { get; set; }
     }
 }

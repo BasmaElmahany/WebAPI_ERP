@@ -1,20 +1,112 @@
 {
   "Files": [
     {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\files\\new proj\\b1a95c8e-ead3-474b-b744-035932029959.jpg",
+      "PackagePath": "staticwebassets\\files\\new proj\\b1a95c8e-ead3-474b-b744-035932029959.jpg"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\files\\new proj\\eceb5a34-b2b8-413c-b932-aa2fcf40f9be.png",
+      "PackagePath": "staticwebassets\\files\\new proj\\eceb5a34-b2b8-413c-b932-aa2fcf40f9be.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\files\\مشروع جديد\\b1f8a78f-9df3-4503-9fc2-309f47a34921.png",
+      "PackagePath": "staticwebassets\\files\\مشروع جديد\\b1f8a78f-9df3-4503-9fc2-309f47a34921.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\files\\مشروع جديد\\db722074-6bed-43cf-94f5-c3ff0e5521f1.pdf",
+      "PackagePath": "staticwebassets\\files\\مشروع جديد\\db722074-6bed-43cf-94f5-c3ff0e5521f1.pdf"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\08c7f78d-83b7-469c-8315-5dd2e4d8789e.png",
+      "PackagePath": "staticwebassets\\images\\journals\\08c7f78d-83b7-469c-8315-5dd2e4d8789e.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\12b5b89f-a3d2-40fb-b5eb-429f96a63ea1.png",
+      "PackagePath": "staticwebassets\\images\\journals\\12b5b89f-a3d2-40fb-b5eb-429f96a63ea1.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\15cc23fb-30b7-4743-b025-9ab98ad1da94.png",
+      "PackagePath": "staticwebassets\\images\\journals\\15cc23fb-30b7-4743-b025-9ab98ad1da94.png"
+    },
+    {
       "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\2b2eecc7-16cd-42d3-8089-3a0f924ff34f.png",
       "PackagePath": "staticwebassets\\images\\journals\\2b2eecc7-16cd-42d3-8089-3a0f924ff34f.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\37ff076c-3d2f-448a-8b04-22562306b4a0.png",
+      "PackagePath": "staticwebassets\\images\\journals\\37ff076c-3d2f-448a-8b04-22562306b4a0.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\3b74c7ef-17e4-452f-bc3f-30aa50fc3ebc.png",
+      "PackagePath": "staticwebassets\\images\\journals\\3b74c7ef-17e4-452f-bc3f-30aa50fc3ebc.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\4de8c7bf-9617-46e9-a535-8daea5818c09.png",
+      "PackagePath": "staticwebassets\\images\\journals\\4de8c7bf-9617-46e9-a535-8daea5818c09.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\5ddc378c-def9-4430-b377-8777705929fa.png",
+      "PackagePath": "staticwebassets\\images\\journals\\5ddc378c-def9-4430-b377-8777705929fa.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\68176f52-337c-421b-ad9a-ad98f5df4122.png",
+      "PackagePath": "staticwebassets\\images\\journals\\68176f52-337c-421b-ad9a-ad98f5df4122.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\732d23f9-e9e3-4980-a429-308c58fb57a5.png",
+      "PackagePath": "staticwebassets\\images\\journals\\732d23f9-e9e3-4980-a429-308c58fb57a5.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\76fdeb50-ca0d-479d-9cca-bb3cf072db44.png",
+      "PackagePath": "staticwebassets\\images\\journals\\76fdeb50-ca0d-479d-9cca-bb3cf072db44.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\7d37586e-4a2e-45d8-9bf7-4738c32f1906.jpg",
+      "PackagePath": "staticwebassets\\images\\journals\\7d37586e-4a2e-45d8-9bf7-4738c32f1906.jpg"
     },
     {
       "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\8b4e4f92-99d3-413d-a539-10eadabbb934.png",
       "PackagePath": "staticwebassets\\images\\journals\\8b4e4f92-99d3-413d-a539-10eadabbb934.png"
     },
     {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\a9c620af-fea5-4321-9f51-33d631b5d6a7.png",
+      "PackagePath": "staticwebassets\\images\\journals\\a9c620af-fea5-4321-9f51-33d631b5d6a7.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\b3aa7a35-2005-4971-bb2f-9e077d3d3b35.png",
+      "PackagePath": "staticwebassets\\images\\journals\\b3aa7a35-2005-4971-bb2f-9e077d3d3b35.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\b598d436-69a7-4698-8f7f-d0998aa438d7.png",
+      "PackagePath": "staticwebassets\\images\\journals\\b598d436-69a7-4698-8f7f-d0998aa438d7.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\b5ce5c2b-2c82-4350-b02a-090a60c4f1ea.png",
+      "PackagePath": "staticwebassets\\images\\journals\\b5ce5c2b-2c82-4350-b02a-090a60c4f1ea.png"
+    },
+    {
       "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\bbd5bfae-ea4b-44d9-9994-bc7de0c35fbc.png",
       "PackagePath": "staticwebassets\\images\\journals\\bbd5bfae-ea4b-44d9-9994-bc7de0c35fbc.png"
     },
     {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\c4c786a7-c1f1-41e0-9911-de765fef5d5a.png",
+      "PackagePath": "staticwebassets\\images\\journals\\c4c786a7-c1f1-41e0-9911-de765fef5d5a.png"
+    },
+    {
       "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\c64116b1-4db2-488b-bcce-b05653d31bd7.png",
       "PackagePath": "staticwebassets\\images\\journals\\c64116b1-4db2-488b-bcce-b05653d31bd7.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\c805ff07-9ab3-418a-a861-3a1a50f50523.png",
+      "PackagePath": "staticwebassets\\images\\journals\\c805ff07-9ab3-418a-a861-3a1a50f50523.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\d5802ec7-db1c-4991-877c-cb3f7700824c.png",
+      "PackagePath": "staticwebassets\\images\\journals\\d5802ec7-db1c-4991-877c-cb3f7700824c.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\d68c605e-fa25-4cb5-b915-22ed5c1510fa.png",
+      "PackagePath": "staticwebassets\\images\\journals\\d68c605e-fa25-4cb5-b915-22ed5c1510fa.png"
     },
     {
       "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\d74e4c74-9224-4379-95fe-fda52d2e3ff1.png",
@@ -23,6 +115,14 @@
     {
       "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\e1e634ef-2866-4ca3-b3b5-18da1b912167.png",
       "PackagePath": "staticwebassets\\images\\journals\\e1e634ef-2866-4ca3-b3b5-18da1b912167.png"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\e9d01800-6d19-451c-b64a-9bb989be8864.jpg",
+      "PackagePath": "staticwebassets\\images\\journals\\e9d01800-6d19-451c-b64a-9bb989be8864.jpg"
+    },
+    {
+      "Id": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\wwwroot\\images\\journals\\f6177cd6-37ef-4c6f-9fd7-ebcd22a3666a.png",
+      "PackagePath": "staticwebassets\\images\\journals\\f6177cd6-37ef-4c6f-9fd7-ebcd22a3666a.png"
     },
     {
       "Id": "obj\\Release\\net8.0\\win-x64\\staticwebassets\\msbuild.WebAPI.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
