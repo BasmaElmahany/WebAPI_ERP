@@ -341,11 +341,8 @@
                     "type": "string",
                     "format": "binary"
                   },
-                  "Lines": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/CreateJournalLineDto"
-                    }
+                  "LinesJson": {
+                    "type": "string"
                   }
                 }
               },
@@ -362,7 +359,7 @@
                 "Photo": {
                   "style": "form"
                 },
-                "Lines": {
+                "LinesJson": {
                   "style": "form"
                 }
               }
@@ -422,19 +419,45 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/CreateJournalDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateJournalDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateJournalDto"
+                "type": "object",
+                "properties": {
+                  "EntryNumber": {
+                    "type": "string"
+                  },
+                  "Date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "Photo": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "LinesJson": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "EntryNumber": {
+                  "style": "form"
+                },
+                "Date": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "Photo": {
+                  "style": "form"
+                },
+                "LinesJson": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -976,58 +999,6 @@
           "openingBalance": {
             "type": "number",
             "format": "double"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CreateJournalDto": {
-        "type": "object",
-        "properties": {
-          "entryNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "photo": {
-            "type": "string",
-            "format": "binary",
-            "nullable": true
-          },
-          "lines": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CreateJournalLineDto"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CreateJournalLineDto": {
-        "type": "object",
-        "properties": {
-          "accountId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "debit": {
-            "type": "number",
-            "format": "double"
-          },
-          "credit": {
-            "type": "number",
-            "format": "double"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false

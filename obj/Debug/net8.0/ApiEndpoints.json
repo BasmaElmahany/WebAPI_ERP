@@ -175,8 +175,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Lines",
-        "Type": "System.Collections.Generic.List\u00601[[WebAPI.Models.CreateJournalLineDto, WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Name": "LinesJson",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],
@@ -217,9 +217,29 @@
         "IsRequired": true
       },
       {
-        "Name": "dto",
-        "Type": "WebAPI.Models.CreateJournalDto",
-        "IsRequired": true
+        "Name": "EntryNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Date",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Photo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "LinesJson",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
