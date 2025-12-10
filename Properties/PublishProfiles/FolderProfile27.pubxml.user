@@ -3,9 +3,13 @@
 https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
+<<<<<<< HEAD
   <PropertyGroup>
     <_PublishTargetUrl>D:\ERP_publishes\28</_PublishTargetUrl>
     <History>True|2025-12-09T14:10:53.5604515Z||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>
+=======
+</Project>
+>>>>>>> 867d26c31d3f39e6ebd3981c5ee1b06bf462aff9

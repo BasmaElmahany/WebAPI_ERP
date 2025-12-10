@@ -2,9 +2,9 @@
 {
     public class CreateJournalLineDto
     {
-        public int AccountId { get; set; }
-        public decimal Debit { get; set; } = 0;
-        public decimal Credit { get; set; } = 0;
-        public string? Description { get; set; }
+        public int accountId { get; set; }
+        public decimal debit { get; set; } = 0;
+        public decimal credit { get; set; } = 0;
+        public string? description { get; set; }
     }
 }
