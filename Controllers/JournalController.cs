@@ -4,6 +4,7 @@ using WebAPI.Data;
 using WebAPI.Services;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
+using System.Text.Json;
 
 namespace WebAPI.Controllers
 {
@@ -14,12 +15,19 @@ namespace WebAPI.Controllers
     {
         private readonly ProjectDbContextFactory _factory;
         private readonly AccountingService _service;
-
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*--------------------------------------------Constructor ----------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
         public JournalController(ProjectDbContextFactory factory, AccountingService service)
         {
             _factory = factory;
             _service = service;
         }
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*--------------------------------------------Create ----------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
         [HttpPost]
         public async Task<IActionResult> Create(
          string project,
@@ -73,8 +81,14 @@ namespace WebAPI.Controllers
             return CreatedAtAction(nameof(Get), new { project, id }, new { id });
         }
 
+
+
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*--------------------------------------------Update ----------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string project, int id, [FromBody] CreateJournalDto dto)                                               
+        public async Task<IActionResult> Update(string project, int id, [FromForm] UpdateJournalDto dto)
         {
             using var db = _factory.Create(project);
 
@@ -85,32 +99,55 @@ namespace WebAPI.Controllers
             if (entry.Posted)
                 return BadRequest(new { message = "Cannot edit a posted journal entry." });
 
-            // تأكد من توازن القيد
-            var totalDebit = dto.Lines.Sum(x => x.Debit);
-            var totalCredit = dto.Lines.Sum(x => x.Credit);
-            if (totalDebit != totalCredit)
-                return BadRequest(new { message = "Journal not balanced. Total debit must equal total credit." });
+            // Deserialize incoming line DTOs
+            var dtoLines = JsonSerializer.Deserialize<List<CreateJournalLineDto>>(dto.LinesJson);
 
-            // إنشاء نسخة جديدة من البيانات المحدثة
-            var updatedEntry = new JournalEntry
-            {
-                Date = dto.Date,
-                Description = dto.Description,
-                EntryNumber = dto.EntryNumber
-            };
-
-            var updatedLines = dto.Lines.Select(l => new JournalLine
+            // Convert DTO → Entity
+            var lines = dtoLines.Select(l => new JournalLine
             {
                 AccountId = l.AccountId,
                 Debit = l.Debit,
                 Credit = l.Credit,
                 Description = l.Description
-            });
+            }).ToList();
 
-            await _service.UpdateJournalEntryAsync(project, id, updatedEntry, updatedLines);
+            // Validate balancing
+            var totalDebit = lines.Sum(x => x.Debit);
+            var totalCredit = lines.Sum(x => x.Credit);
+
+            if (totalDebit != totalCredit)
+                return BadRequest(new { message = "Journal not balanced. Total debit must equal total credit." });
+
+            // Update entry fields
+            entry.EntryNumber = dto.EntryNumber;
+            entry.Date = dto.Date;
+            entry.Description = dto.Description;
+
+            // Handle new file upload
+            if (dto.Photo != null)
+            {
+                string folder = Path.Combine("files", project);
+                Directory.CreateDirectory(folder);
+
+                string filename = Guid.NewGuid().ToString() + Path.GetExtension(dto.Photo.FileName);
+                string path = Path.Combine(folder, filename);
+
+                using var stream = new FileStream(path, FileMode.Create);
+                await dto.Photo.CopyToAsync(stream);
+
+                entry.PhotoUrl = $"/files/{project}/{filename}";
+            }
+
+            await _service.UpdateJournalEntryAsync(project, id, entry, lines);
+
             return NoContent();
         }
 
+
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*--------------------------------------------get by id ----------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string project, int id)
         {
@@ -120,7 +157,10 @@ namespace WebAPI.Controllers
             var lines = await db.JournalLines.Where(l => l.JournalEntryId == id).ToListAsync();
             return Ok(new { entry, lines });
         }
-
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*--------------------------------------------get all ----------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
         [HttpGet]
         public async Task<IActionResult> GetAll(string project)
         {
@@ -139,14 +179,20 @@ namespace WebAPI.Controllers
 
             return Ok(new { list });
         }
-
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*--------------------------------------------post to ledger ----------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
         [HttpPost("{id}/post")]
         public async Task<IActionResult> Post(string project, int id)
         {
             await _service.PostJournalEntryAsync(project, id);
             return NoContent();
         }
-
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*--------------------------------------------unpost from ledger ----------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
         [HttpPost("{id}/unpost")]
         public async Task<IActionResult> Unpost(string project, int id)
         {
@@ -160,7 +206,10 @@ namespace WebAPI.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*--------------------------------------------Delete ----------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string project, int id)
         {
@@ -174,5 +223,9 @@ namespace WebAPI.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*--------------------------------------------Finish ----------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
     }
 }

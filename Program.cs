@@ -20,27 +20,25 @@ namespace WebAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // 🧩 Connection String
+            // CONNECTION STRING
             var conn = builder.Configuration.GetConnectionString("DefaultConnection");
 
             builder.Logging.ClearProviders();
             builder.Logging.AddConsole();
 
-            // 🧩 JWT Configuration
+            // JWT CONFIGURATION
             var jwtSettingsSection = builder.Configuration.GetSection("JwtSettings");
             builder.Services.Configure<JwtSettings>(jwtSettingsSection);
             var jwtSettings = jwtSettingsSection.Get<JwtSettings>();
 
-            // ✅ Fix for role claim mapping issues
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-            // 🧩 Authentication & JWT
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            .AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -57,15 +55,13 @@ namespace WebAPI
 
             builder.Services.AddAuthorization();
 
-            // 🧩 Controllers + JSON Options
+            // CONTROLLERS + JSON
             builder.Services.AddControllers()
                 .AddJsonOptions(opts =>
                 {
                     opts.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
-                    opts.JsonSerializerOptions.WriteIndented = false;
                 });
 
-            // Ensure JSON responses always
             builder.Services.Configure<MvcOptions>(opts =>
             {
                 opts.Filters.Add(new ProducesAttribute("application/json"));
@@ -73,14 +69,14 @@ namespace WebAPI
 
             builder.Services.AddEndpointsApiExplorer();
 
-            // 🧩 Swagger setup
+            // SWAGGER
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "ERP System API",
                     Version = "v1",
-                    Description = "📚 ERP System built with ASP.NET Core",
+                    Description = "ERP System built with ASP.NET Core",
                     Contact = new OpenApiContact
                     {
                         Name = "Basma Khalaf",
@@ -88,7 +84,6 @@ namespace WebAPI
                     }
                 });
 
-                // ✅ JWT Bearer Support in Swagger
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
@@ -96,7 +91,7 @@ namespace WebAPI
                     Scheme = "bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "Enter your JWT token like: Bearer {your token}"
+                    Description = "Enter your token: Bearer {token}"
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -110,12 +105,12 @@ namespace WebAPI
                                 Id = "Bearer"
                             }
                         },
-                        new string[] {}
+                        Array.Empty<string>()
                     }
                 });
             });
 
-            // 🧩 DbContext and Identity
+            // DATABASE + IDENTITY
             builder.Services.AddDbContext<ErpMasterContext>(options =>
                 options.UseSqlServer(conn));
 
@@ -123,7 +118,6 @@ namespace WebAPI
                 .AddEntityFrameworkStores<ErpMasterContext>()
                 .AddDefaultTokenProviders();
 
-            // 🧩 Identity Options
             builder.Services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 6;
@@ -132,60 +126,77 @@ namespace WebAPI
                 options.Password.RequireNonAlphanumeric = false;
             });
 
-            // 🔐 Prevent redirects on unauthorized access
             builder.Services.ConfigureApplicationCookie(options =>
             {
-                options.Events.OnRedirectToLogin = context =>
+                options.Events.OnRedirectToLogin = ctx =>
                 {
-                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    ctx.Response.StatusCode = 401;
                     return Task.CompletedTask;
                 };
-                options.Events.OnRedirectToAccessDenied = context =>
+                options.Events.OnRedirectToAccessDenied = ctx =>
                 {
-                    context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                    ctx.Response.StatusCode = 403;
                     return Task.CompletedTask;
                 };
             });
 
-            // 🧩 Custom Services
+            // CUSTOM SERVICES
             builder.Services.AddSingleton(new ProjectDbContextFactory(conn));
             builder.Services.AddScoped<AccountingService>();
 
-            // 🧩 CORS (Angular)
+            // CORS POLICY
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowAngularDevClient", policy =>
+                options.AddPolicy("AllowAngular", policy =>
                 {
-                    policy.WithOrigins("http://localhost:4200" , "http://172.16.1.36:81", "http://localhost:81")
-                          .AllowAnyHeader()
-                          .AllowAnyMethod()
-                          .AllowCredentials();
+                    policy.WithOrigins(
+                        "https://finance.minya.gov.eg",
+                        "http://localhost:4200",
+                        "http://172.16.1.36:81",
+                        "http://localhost:81"
+                    )
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
                 });
             });
-            builder.Services.Configure<JsonOptions>(options =>
-            {
-                options.JsonSerializerOptions.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
-                options.JsonSerializerOptions.WriteIndented = false;
-            });
 
-
-            // 🧩 Build App
+            // BUILD APP
             var app = builder.Build();
 
+            // LOG REQUESTS
             app.Use(async (context, next) =>
             {
-                Console.WriteLine($"➡️ Incoming Request: {context.Request.Method} {context.Request.Path}");
+                Console.WriteLine($"➡️ {context.Request.Method} {context.Request.Path}");
                 await next();
-                Console.WriteLine($"⬅️ Response Status: {context.Response.StatusCode}");
+                Console.WriteLine($"⬅️ Status: {context.Response.StatusCode}");
             });
-            app.Use(async (context, next) =>
-            {
-                context.Response.Headers["Content-Type"] = "application/json; charset=utf-8";
-                await next();
-            });
-            app.UseStaticFiles();
 
-            // 🧩 Swagger & Dev Tools
+            // STATIC FILES WITH CORS
+            var allowedOrigins = new[]
+            {
+                "https://finance.minya.gov.eg",
+                "http://localhost:4200",
+                "http://172.16.1.36:81"
+            };
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                ServeUnknownFileTypes = true,
+                OnPrepareResponse = ctx =>
+                {
+                    var origin = ctx.Context.Request.Headers["Origin"].ToString();
+                    if (allowedOrigins.Contains(origin))
+                    {
+                        ctx.Context.Response.Headers.Append("Access-Control-Allow-Origin", origin);
+                    }
+
+                    ctx.Context.Response.Headers.Append("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS");
+                    ctx.Context.Response.Headers.Append("Access-Control-Allow-Headers", "Content-Type, Authorization");
+                }
+            });
+
+            // SWAGGER
             if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
@@ -193,16 +204,10 @@ namespace WebAPI
                 app.UseSwaggerUI();
             }
 
-            // 🧩 Middleware order (important)
             app.UseHttpsRedirection();
-            app.Use(async (context, next) =>
-            {
-                context.Response.Headers["Content-Type"] = "application/json";
-                await next();
-            });
             app.UseRouting();
 
-            app.UseCors("AllowAngularDevClient");
+            app.UseCors("AllowAngular");
 
             app.UseAuthentication();
             app.UseAuthorization();

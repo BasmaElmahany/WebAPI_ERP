@@ -1,12 +1,105 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\journalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\journalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\chartofaccountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\chartofaccountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\models\\updatejournaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:models\\updatejournaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|d:\\erpmasterapi\\webapi\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{514A026A-0832-4ED7-ABA8-D5814A21F745}|WebAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ChartOfAccountsController.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ChartOfAccountsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ChartOfAccountsController.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ChartOfAccountsController.cs",
+              "RelativeToolTip": "Controllers\\ChartOfAccountsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T08:48:00.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UpdateJournalDto.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Models\\UpdateJournalDto.cs",
+              "RelativeDocumentMoniker": "Models\\UpdateJournalDto.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Models\\UpdateJournalDto.cs",
+              "RelativeToolTip": "Models\\UpdateJournalDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T08:33:23.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "JournalController.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\JournalController.cs",
+              "RelativeDocumentMoniker": "Controllers\\JournalController.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\JournalController.cs",
+              "RelativeToolTip": "Controllers\\JournalController.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAowFEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T08:30:28.502Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProjectsController.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ProjectsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProjectsController.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Controllers\\ProjectsController.cs",
+              "RelativeToolTip": "Controllers\\ProjectsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T08:30:28.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\ErpMasterAPI\\WebAPI\\WebAPI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAKkAAAAAAAAAAAAwwNwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-09T14:09:18.483Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
